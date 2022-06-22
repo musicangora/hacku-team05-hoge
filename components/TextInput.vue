@@ -55,7 +55,7 @@ export default {
       }
     },
     answer (answer) {
-      if (!answer || !!answer.length < 30) {
+      if (!answer || answer.length < 30) {
         this.$delete(this.errors, 'answer')
       } else {
         this.$set(this.errors, 'answer', '回答は30文字以内で入力してください。')
