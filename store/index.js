@@ -5,7 +5,8 @@ const createStore = () => {
     state: {
       roomId: -1,
       host: false,
-      startTime: 0
+      startTime: 0,
+      myNickName: ''
     },
     mutations: {
       setRoomId (state, roomid) {
@@ -16,6 +17,9 @@ const createStore = () => {
       },
       setStartTime (state, startTime) {
         state.startTime = startTime
+      },
+      setNickName (state, nickName) {
+        state.myNickName = nickName
       }
     },
     actions: {},

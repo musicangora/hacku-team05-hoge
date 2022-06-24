@@ -54,7 +54,8 @@ export default {
       const url = '/room/guests/' + this.$store.state.roomId
       const response = await this.$axios.post(url, { name: String(this.nickName) })
       if (response.status === 200) {
-        console.log(response.data)
+        this.$store.commit('setNickName', String(this.nickName))
+        // console.log(response.data)
         if (!this.host) {
           this.wait()
         }
@@ -68,7 +69,7 @@ export default {
       const url = '/room/active/' + this.$store.state.roomId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
-        console.log(response.data.isActive)
+        // console.log(response.data.isActive)
         if (response.data.isActive) {
           // this.$store.state.startTime = response.data.timestamp
           this.$store.commit('setStartTime', response.data.timestamp)
@@ -80,7 +81,7 @@ export default {
       const url = '/room/active/' + this.$store.state.roomId
       const response = await this.$axios.post(url, '')
       if (response.status === 200) {
-        console.log(response.data)
+        // console.log(response.data)
         // this.$store.state.startTime = response.data.timestamp
         this.$store.commit('setStartTime', response.data.timestamp)
         this.$router.push(this.$store.state.roomId + '/collectQuestions')
