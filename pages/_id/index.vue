@@ -29,11 +29,6 @@ export default {
       pageUrl: ''
     }
   },
-  computed: {
-    message () {
-      return this.$store.state.roomId
-    }
-  },
   mounted () {
     this.pageUrl = window.location.href
     this.$store.commit('setRoomId', window.location.href.split('/').slice(-1)[0])
