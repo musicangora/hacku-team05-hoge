@@ -12,10 +12,22 @@ export default {
       question: { id: '123abc', name: 'たけのこきのこ' }
     }
   },
-  created () {
-    // お題を取得してquestionに入れる処理
+  beforeMount () {
+    this.getNowQuestion()
   },
   methods: {
+    async getNowQuestion () {
+      if (this.$store.state.nowThemeInfo === {}) {
+        const url = '' // voteが最大のQuestionsを取得する
+        const response = await this.$axios.get(url, {})
+        if (response.status === 200) {
+          this.question = response.data.theme
+          this.$store.commit('setNowThemeInfo', this.question)
+        }
+      } else {
+        this.question = this.$store.state.nowThemeInfo
+      }
+    }
   }
 }
 
