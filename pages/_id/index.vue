@@ -7,13 +7,13 @@
       <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
     </ul>
     <input v-model="nickName" type="text" class="shadow"><input>
-    <button @click="sendNickName">確定</button>
+    <button @click.once="sendNickName">確定</button>
     <div>
       <p>this page url</p>
       <p>{{ pageUrl }}</p>
     </div>
     <div v-if="host">
-      <button @click="gameStart">ゲームスタート</button>
+      <button @click.once="gameStart">ゲームスタート</button>
     </div>
   </div>
 </template>
