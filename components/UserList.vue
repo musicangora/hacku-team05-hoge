@@ -17,11 +17,23 @@ export default {
     }
   },
   created () {
-    // メンバーを取得してmembersに入れる処理
+    this.getMember()
   },
   methods: {
     toggleList () {
       this.expanded = !this.expanded
+    },
+    async getMember () {
+      if (this.$store.state.members === []) {
+        const url = '/room/' + this.$store.state.roomId
+        const response = await this.$axios.get(url)
+        if (response.status === 200) {
+          this.members = response.data.guests
+          this.$store.commit('setMember', this.members)
+        }
+      } else {
+        this.members = this.$store.state.members
+      }
     }
   }
 }

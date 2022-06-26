@@ -67,14 +67,24 @@ export default {
     this.questionPlaceholder = this.sampleQuestions[Math.floor(Math.random() * this.sampleQuestions.length)]
   },
   methods: {
-    sendText () {
+    async sendText () {
       if (this.type === 'question' && this.question) {
-        // お題をpostする処理
-        this.question = ''
-        this.$emit('postComplete')
+        const url = '/theme/create/' + this.$store.state.roomId
+        // console.log(url)
+        // console.log(this.$store.state.myNickName)
+        const response = await this.$axios.post(url, { theme: this.question, name: this.$store.state.myNickName })
+        if (response.status === 200) {
+          this.question = ''
+        }
+        // this.$emit('postComplete')
       }
       if (this.type === 'answer' && this.answer) {
         // 回答をpostする処理
+        const url = '/anser/create/' + this.$store.state.nowThemeId
+        const response = await this.$axios.post(url, { theme: this.answer, name: this.$store.state.myNickName })
+        if (response.status === 200) {
+          this.answer = ''
+        }
       }
     }
   }

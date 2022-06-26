@@ -5,9 +5,9 @@
       <path :d="shape" :fill="color" />
     </svg>
     <p>{{ showTime }}</p>
-    <button @click="start">
+    <!-- <button @click="start">
       スタート
-    </button>
+    </button> -->
   </div>
 </template>
 
@@ -48,6 +48,7 @@ export default {
     this.sec = this.time
     this.nextpage = this.url
     this.percent = 1 / this.sec // １秒毎の円グラフの変化量
+    this.start()
   },
   methods: {
     start () {
