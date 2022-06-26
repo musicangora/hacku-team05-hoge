@@ -24,7 +24,18 @@ export default {
       type: String,
       required: false,
       default: '/'
+    },
+    isAnswer: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    postAnswer: {
+      type: Function,
+      required: false,
+      default: () => {}
     }
+
   },
   data () {
     return {
@@ -70,11 +81,16 @@ export default {
         this.changePage()
       }
     },
-    changePage () {
+    async changePage () {
       clearInterval(this.timer)
-      // console.log(this.nextpage)
-      this.$router.push(this.nextpage)
-      this.reset_data()
+      if (this.isAnswer) {
+        await this.postAnswer()
+        this.$router.push(this.nextpage)
+        this.reset_data()
+      } else {
+        this.$router.push(this.nextpage)
+        this.reset_data()
+      }
     },
     // 円形描画
     getPieVal (per) {
