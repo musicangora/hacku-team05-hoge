@@ -84,7 +84,7 @@ export default {
     async changePage () {
       clearInterval(this.timer)
       if (this.isAnswer) {
-        await this.postAnswer
+        await this.postAnswer()
         this.$router.push(this.nextpage)
         this.reset_data()
       } else {

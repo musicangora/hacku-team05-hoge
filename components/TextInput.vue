@@ -7,7 +7,7 @@
     </div>
     <div v-if="type=='answer'">
       <label for="answer">あなたの回答</label>
-      <input v-model="answer" type="text">
+      <input ref="send" v-model="answer" type="text">
       <span>{{ errors.answer }}</span>
     </div>
 
@@ -86,6 +86,9 @@ export default {
           this.answer = ''
         }
       }
+    },
+    anserSend () {
+      this.$refs.send.sendText()
     }
   }
 }
