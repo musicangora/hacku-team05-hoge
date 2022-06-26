@@ -6,7 +6,8 @@ const createStore = () => {
       roomId: -1,
       host: false,
       startTime: 0,
-      nowThemeId: 0
+      nowThemeId: 0,
+      myNickName: ''
     },
     mutations: {
       setRoomId (state, roomid) {
@@ -20,6 +21,9 @@ const createStore = () => {
       },
       setNowThemeId (state, themeId) {
         state.nowThemeId = themeId
+      },
+      setNickName (state, nickName) {
+        state.myNickName = nickName
       }
     },
     actions: {},
