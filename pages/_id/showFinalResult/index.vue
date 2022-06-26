@@ -2,7 +2,7 @@
   <div>
     <p>ここは,最終結果のページ</p>
     <!-- 以下実際はタイマーでページ遷移 -->
-    <NuxtLink to="/:id/decideQuestion">もう一度しましょう</NuxtLink>
+    <!-- <NuxtLink to="/:id/decideQuestion">もう一度しましょう</NuxtLink> -->
     <p>参加メンバー</p>
     <ul>
       <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
@@ -10,9 +10,12 @@
     </ul>
     <NowQuestion />
     <p>私たちの回答</p>
-    <p>{{answer}}</p>
+    <p>{{ answer.createdUserName }}</p>
+    <p>{{ answer.title }}</p>
     <button @click.once="sendNickName">結果を共有！</button>
-    <button @click.once="gameStart">もう一度！</button>
+    <div v-if="host">
+      <button @click.once="gameStart">もう一度！</button>
+    </div>
   </div>
 </template>
 
@@ -22,40 +25,28 @@ export default {
   data () {
     return {
       members: [],
-      answer: ''
+      answer: {},
+      host: false
     }
   },
   mounted () {
-    this.showMember()
+    this.getAllMember()
     this.requestAnswer()
+    this.host = this.$store.state.host
   },
   methods: {
-    showMember () {
-      const self = this
-      setInterval(function () { self.getAllMember() }, 5000)
+    getAllMember () {
+      this.members = this.$store.state.members
     },
-    async getAllMember () {
-      const url = '/room/guests/' + this.$store.state.roomId
+    async requestAnswer () {
+      const url = '/answer/max/' + this.$store.state.nowThemeId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
-        this.members = response.data[0].guests
+        this.answer = response.data[0].linkedAnser[0]
       }
     },
-    requestAnswer () {
-      // 答えが返ってくる
-      // const url = '/room/guests/' + this.$store.state.roomId
-      // const response = await this.$axios.get(url, '')
-      this.answer = 'ここが変わる'
-    },
-    async gameStart () {
-      const url = '/room/active/' + this.$store.state.roomId
-      const response = await this.$axios.post(url, '')
-      if (response.status === 200) {
-        // console.log(response.data)
-        // this.$store.state.startTime = response.data.timestamp
-        this.$store.commit('setStartTime', response.data.timestamp)
-        this.$router.push(this.$store.state.roomId + '/collectQuestions')
-      }
+    gameStart () {
+      this.$router.push(this.$store.state.roomId + '/collectQuestions')
     }
   }
 }
