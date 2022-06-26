@@ -6,6 +6,8 @@ const createStore = () => {
       roomId: -1,
       host: false,
       startTime: 0,
+      nowThemeInfo: {},
+      members: [],
       nowThemeId: 0,
       myNickName: ''
     },
@@ -18,6 +20,12 @@ const createStore = () => {
       },
       setStartTime (state, startTime) {
         state.startTime = startTime
+      },
+      setNowThemeInfo (state, theme) {
+        state.nowThemeInfo = theme
+      },
+      setMembers (state, members) {
+        state.members = members
       },
       setNowThemeId (state, themeId) {
         state.nowThemeId = themeId
