@@ -7,7 +7,9 @@ const createStore = () => {
       host: false,
       startTime: 0,
       nowThemeInfo: {},
-      members: []
+      members: [],
+      nowThemeId: 0,
+      myNickName: ''
     },
     mutations: {
       setRoomId (state, roomid) {
@@ -24,6 +26,12 @@ const createStore = () => {
       },
       setMembers (state, members) {
         state.members = members
+      },
+      setNowThemeId (state, themeId) {
+        state.nowThemeId = themeId
+      },
+      setNickName (state, nickName) {
+        state.myNickName = nickName
       }
     },
     actions: {},
