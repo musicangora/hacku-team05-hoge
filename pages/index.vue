@@ -12,8 +12,7 @@
       <button type="button" @click.once="createRoom">Roomを作る</button>
     </div>
     <div>
-      <p>遊び方</p>
-      <p>内容</p>
+      <HowToPlay />
     </div>
   </div>
 </template>

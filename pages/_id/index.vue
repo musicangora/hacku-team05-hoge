@@ -6,6 +6,8 @@
       <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
       <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
     </ul>
+    <HowToPlay />
+    <p>ニックネームを入力してください</p>
     <input v-model="nickName" type="text" class="shadow"><input>
     <button @click.once="sendNickName">確定</button>
     <div>
