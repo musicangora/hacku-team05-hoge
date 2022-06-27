@@ -4,7 +4,7 @@
       <circle cx="0" cy="0" r="1" fill="#eeeeee" />
       <path :d="shape" :fill="color" />
     </svg>
-    <p>{{ showTime }}</p>
+    <p>{{ sec }}</p>
     <!-- <button @click="start">
       スタート
     </button> -->
@@ -39,7 +39,7 @@ export default {
   },
   data () {
     return {
-      sec: 1,
+      sec: 60,
       nextpage: '/',
       timer: null,
       // 円形周り
@@ -48,11 +48,6 @@ export default {
       currentPercent: 1, // 0 < currentPercent < 1
       // 円の全体を塗りつぶしている初期値
       shape: 'M 1 0 A 1 1 0 1 1 1 -1.133107779529596e-15 L 0 0'
-    }
-  },
-  computed: {
-    showTime () {
-      return this.sec
     }
   },
   mounted () {
@@ -85,9 +80,11 @@ export default {
       clearInterval(this.timer)
       if (this.isAnswer) {
         await this.postAnswer()
+        clearInterval(this.timer)
         this.$router.push(this.nextpage)
         this.reset_data()
       } else {
+        clearInterval(this.timer)
         this.$router.push(this.nextpage)
         this.reset_data()
       }
@@ -109,9 +106,8 @@ export default {
       return pathData
     },
     reset_data () {
-      this.sec = 1
+      this.sec = 60
       this.nextpage = '/'
-      this.timer = null
       // 円形周り
       this.percent = 0
       this.color = '#0ea5e9'

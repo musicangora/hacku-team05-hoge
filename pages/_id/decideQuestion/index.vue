@@ -27,11 +27,9 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      countDownTime: 10,
+      countDownTime: 40,
       url: '',
-      questions: [{ createUserName: 'a', title: 'a', id: 'a', numberOfVotes: 0 },
-        { createUserName: 'aa', title: 'aa', id: 'aa', numberOfVotes: 0 },
-        { createUserName: 'aaa', title: 'aaa', id: 'aaa', numberOfVotes: 0 }],
+      questions: [],
       voteCount: 0,
       maxVoteCount: 10
     }
@@ -45,7 +43,6 @@ export default {
   methods: {
     async showQuestions () {
       const url = '/theme/read/' + this.$store.state.roomId
-      // console.log(url)
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
         this.questions = response.data.themes
@@ -54,7 +51,6 @@ export default {
     async voteQuestion (questionId) {
       if (this.maxVoteCount > this.voteCount) {
         const url = '/theme/vote/' + questionId
-        // console.log(url)
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
           this.voteCount += 1

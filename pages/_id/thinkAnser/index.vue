@@ -1,9 +1,11 @@
+
 <template>
   <div>
     <p>ここは,自分の回答を入力するページ</p>
     <div class="w-20 h-50">
       <Timer :time="Number(countDownTime)" :url="url" :is-answer="true" :post-answer="postAnswer" />
     </div>
+    <UserList />
     <NowQuestion />
     <TextInput ref="textInput" :type="'answer'" />
     <!-- 以下実際はタイマーでページ遷移 -->
@@ -16,14 +18,14 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      countDownTime: 60,
+      countDownTime: 50,
       url: '/:id/decideAnser',
       questions: []
     }
   },
   created () {
     // this.setCountDownTime()
-    this.url = this.$store.state.roomId + '/decideAnser'
+    this.url = '/' + this.$store.state.roomId + '/decideAnser'
   },
   mounted () {
     // this.roomCreate()

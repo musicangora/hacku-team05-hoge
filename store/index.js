@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      roomId: -1,
+      roomId: 0,
       host: false,
       startTime: 0,
       nowThemeInfo: {},
