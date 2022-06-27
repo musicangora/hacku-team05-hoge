@@ -20,7 +20,7 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      countDownTime: 50,
+      countDownTime: 60,
       url: '/:id/decideQuestion',
       isSnackbarShowing: false,
       questions: []

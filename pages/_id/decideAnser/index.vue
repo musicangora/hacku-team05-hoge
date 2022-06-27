@@ -29,7 +29,7 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      countDownTime: 50,
+      countDownTime: 90,
       url: '',
       ansers: [{ createdUserName: 'hoge1', title: 'anser1', id: '012' },
         { createdUserName: 'hoge2', title: 'anser2', id: '123' },
