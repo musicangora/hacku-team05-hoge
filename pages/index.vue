@@ -22,32 +22,8 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      // roomName: '',
-      // url: '',
-      // errors: {},
-      // roomPlaceholder: '',
-      // sampleRooms: [
-      //   'ルーム名#3245'
-      // ]
     }
   },
-  // computed: {
-  //   isDisabled () {
-  //     return Object.keys(this.errors).length > 0
-  //   }
-  // },
-  // watch: {
-  //   roomName (roomName) {
-  //     if (!roomName || roomName.length < 30) {
-  //       this.$delete(this.errors, 'roomName')
-  //     } else {
-  //       this.$set(this.errors, 'roomName', 'ルーム名は30文字以内で入力してください。')
-  //     }
-  //   }
-  // },
-  // created () {
-  //   this.roomPlaceholder = this.sampleRooms[Math.floor(Math.random() * this.sampleRooms.length)]
-  // },
   methods: {
     async createRoom () {
       const url = '/room/create'

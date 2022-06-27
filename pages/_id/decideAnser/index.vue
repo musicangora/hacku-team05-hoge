@@ -29,28 +29,38 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      countDownTime: 300,
+      countDownTime: 50,
       url: '',
       ansers: [{ createdUserName: 'hoge1', title: 'anser1', id: '012' },
         { createdUserName: 'hoge2', title: 'anser2', id: '123' },
         { createdUserName: 'hoge3', title: 'anser3', id: '234' },
         { createdUserName: 'hoge4', title: 'anser4', id: '345' }],
       voteCount: 0,
-      maxVoteCount: 10
+      maxVoteCount: 10,
+      intervalId: null
     }
   },
   created () {
-    this.url = this.$store.state.roomId + '/showFinalResult'
+    this.url = '/' + this.$store.state.roomId + '/showFinalResult'
   },
   mounted () {
     this.showAnser()
   },
   methods: {
-    async showAnser () {
+    showAnser () {
+      const self = this
+      this.intervalId = setInterval(function () { self.getAnser() }, 1000)
+    },
+    async getAnser () {
       const url = '/answer/read/' + this.$store.state.nowThemeId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
-        this.ansers = response.data
+        if (response.data[0].linkedAnser.length === this.$store.state.members.length) {
+          this.ansers = response.data[0].linkedAnser
+          clearInterval(this.intervalId)
+        } else {
+          this.ansers = response.data
+        }
       }
     },
     async voteAnser (anserId) {

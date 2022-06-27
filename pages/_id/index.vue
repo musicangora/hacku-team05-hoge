@@ -28,7 +28,8 @@ export default {
       members: [],
       nickName: '',
       host: false,
-      pageUrl: ''
+      pageUrl: '',
+      waitInterval: null
     }
   },
   mounted () {
@@ -57,7 +58,6 @@ export default {
       const response = await this.$axios.post(url, { name: String(this.nickName) })
       if (response.status === 200) {
         this.$store.commit('setNickName', String(this.nickName))
-        // console.log(response.data)
         if (!this.host) {
           this.wait()
         }
@@ -65,17 +65,17 @@ export default {
     },
     wait () {
       const self = this
-      setInterval(function () { self.getActiveState() }, 3000)
+      this.waitInterval = setInterval(function () { self.getActiveState() }, 3000)
     },
     async getActiveState () {
       const url = '/room/active/' + this.$store.state.roomId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
-        // console.log(response.data.isActive)
         if (response.data.isActive) {
           // this.$store.state.startTime = response.data.timestamp
-          this.$store.commit('setStartTime', response.data.timestamp)
-          this.$router.push(this.$store.state.roomId + '/collectQuestions')
+          this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
+          this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+          clearInterval(this.waitInterval)
         }
       }
     },
@@ -83,20 +83,10 @@ export default {
       const url = '/room/active/' + this.$store.state.roomId
       const response = await this.$axios.post(url, '')
       if (response.status === 200) {
-        // console.log(response.data)
-        // this.$store.state.startTime = response.data.timestamp
-        this.$store.commit('setStartTime', response.data.timestamp)
-        this.$router.push(this.$store.state.roomId + '/collectQuestions')
+        this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
+        this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
       }
     }
-    // async roomCreate () {
-    //   const url = '/room/create'
-    //   const response = await this.$axios.post(url)
-    //   if (response.status === 200) {
-    //     console.log(response.data.room_id)
-    //     this.$store.commit('setRoomId', response.data.room_id)
-    //   }
-    // }
   }
 }
 </script>

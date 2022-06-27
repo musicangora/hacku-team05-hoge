@@ -12,11 +12,11 @@ export default {
   name: 'UserList',
   data () {
     return {
-      members: [{ id: '123abc', name: 'foo' }, { id: 'bcd456', name: 'bar' }],
+      members: [],
       expanded: false
     }
   },
-  created () {
+  mounted () {
     this.getMember()
   },
   methods: {
@@ -24,12 +24,12 @@ export default {
       this.expanded = !this.expanded
     },
     async getMember () {
-      if (this.$store.state.members === []) {
-        const url = '/room/' + this.$store.state.roomId
+      if (this.$store.state.members.length === 0) {
+        const url = '/room/guests/' + this.$store.state.roomId
         const response = await this.$axios.get(url)
         if (response.status === 200) {
-          this.members = response.data.guests
-          this.$store.commit('setMember', this.members)
+          this.members = response.data[0].guests
+          this.$store.commit('setMembers', this.members)
         }
       } else {
         this.members = this.$store.state.members
