@@ -7,7 +7,7 @@
       <Timer :time="Number(countDownTime)" :url="url" />
     </div>
     <UserList />
-    <p>いいと思ったお題に投票しよう！</p>
+    <p>面白そうなお題を話し合いながら自分がしたいお題に投票しよう！</p>
     <ul>
       <li v-for="(question, key) in questions" :key="key">{{ question.createdUserName }} {{ question.title }}
         <button @click="voteQuestion(question.id)">good</button>

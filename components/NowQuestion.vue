@@ -9,7 +9,7 @@ export default {
   name: 'NowQuestion',
   data () {
     return {
-      question: { id: '123abc', title: 'たけのこきのこ' }
+      question: {}
     }
   },
   mounted () {

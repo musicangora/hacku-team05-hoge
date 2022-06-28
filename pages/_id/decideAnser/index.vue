@@ -8,13 +8,14 @@
     </div>
     <UserList />
     <NowQuestion />
-
+    <p>自分の回答のアピールをして共感を集めよう！みんなの回答に共感したら投票しよう！</p>
     <p>みんなの回答</p>
     <ul>
       <li v-for="(anser,key) in ansers" :key="key">{{ anser.createdUserName }} {{ anser.title }}
         <button @click="voteAnser(anser.id)">good</button>
       </li>
     </ul>
+
     <div v-if=" maxVoteCount - voteCount > 0">
       <p>残り投票回数: {{ maxVoteCount - voteCount }}回</p>
     </div>
@@ -31,10 +32,7 @@ export default {
     return {
       countDownTime: 90,
       url: '',
-      ansers: [{ createdUserName: 'hoge1', title: 'anser1', id: '012' },
-        { createdUserName: 'hoge2', title: 'anser2', id: '123' },
-        { createdUserName: 'hoge3', title: 'anser3', id: '234' },
-        { createdUserName: 'hoge4', title: 'anser4', id: '345' }],
+      ansers: [],
       voteCount: 0,
       maxVoteCount: 10,
       intervalId: null
