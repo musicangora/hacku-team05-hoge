@@ -7,10 +7,10 @@
       <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
     </ul>
     <p>ニックネームを入力してください</p>
-    <input v-model="nickName" type="text" class="shadow">
+    <input v-model="nickName" type="text" class="shadow" :placeholder="placeholder">
     <button @click.once="sendNickName">確定</button>
     <div>
-      <p>this page url</p>
+      <p>下記のURLを共有してください</p>
       <p>{{ pageUrl }}</p>
     </div>
     <div v-if="host">
@@ -29,6 +29,7 @@ export default {
       nickName: '',
       host: false,
       pageUrl: '',
+      placeholder: 'ニックネーム',
       waitInterval: null
     }
   },

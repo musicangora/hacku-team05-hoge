@@ -8,7 +8,7 @@
       <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
     </ul>
     <NowQuestion />
-    <p>私たちの回答</p>
+    <p>最も共感を集めた回答はこれだ！</p>
     <p>{{ answer.createdUserName }}</p>
     <p>{{ answer.title }}</p>
     <button>結果を共有！</button>
@@ -55,7 +55,8 @@ export default {
       }
     },
     gameStart () {
-      this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+      console.log('もう一度遊ぶ')
+      // this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
     }
   }
 }

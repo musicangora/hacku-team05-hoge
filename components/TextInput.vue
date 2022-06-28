@@ -7,7 +7,7 @@
     </div>
     <div v-if="type=='answer'">
       <label for="answer">あなたの回答</label>
-      <input ref="send" v-model="answer" type="text">
+      <input ref="send" v-model="answer" type="text" :placeholder="answerPlaceholder">
       <span>{{ errors.answer }}</span>
     </div>
 
@@ -27,17 +27,20 @@ export default {
     }
   },
   question: '',
-  answer: '',
+  answer: '回答間に合わず',
   data () {
     return {
       question: '',
       answer: '',
       errors: {},
+      answerPlaceholder: 'あなたの回答',
       questionPlaceholder: '',
       sampleQuestions: [
-        '「あ」で始まる最高の映画は？',
-        '「い」で始まる小学生時代の流行は？',
-        '「う」で始まる好きな料理は？'
+        '〇〇年後にも残っていてほしい〇〇',
+        '「懐かしい」と共感されそうな〇〇',
+        'もし、〇〇なら〇〇？',
+        '多分みんな〇〇、身近な豆知識',
+        'ヤフーのいいところは？'
       ]
     }
   },
@@ -75,7 +78,10 @@ export default {
           this.question = ''
         }
       }
-      if (this.type === 'answer' && this.answer) {
+      if (this.type === 'answer') {
+        if (this.answer === '') {
+          this.answer = '回答間に合わず(T_T)'
+        }
         // 回答をpostする処理
         const url = '/answer/create/' + this.$store.state.nowThemeId
         const response = await this.$axios.post(url, { answer: this.answer, name: this.$store.state.myNickName })
