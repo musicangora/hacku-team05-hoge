@@ -50,15 +50,20 @@ export default {
       shape: 'M 1 0 A 1 1 0 1 1 1 -1.133107779529596e-15 L 0 0'
     }
   },
-  mounted () {
+  async mounted () {
+    clearInterval(this.timer)
+    const offset = await this.$store.dispatch('fetchTimerOffset')
     this.sec = this.time
     this.nextpage = this.url
-    this.percent = 1 / this.sec // １秒毎の円グラフの変化量
+    this.sec = this.sec - offset
+    this.percent = 1 / this.time // １秒毎の円グラフの変化量
+    this.currentPercent = this.sec / this.time
     this.start()
   },
   methods: {
     start () {
       const self = this
+      this.shape = this.calc()
       this.timer = setInterval(function () { self.countDown() }, 1000)
     },
     countDown () {
@@ -77,6 +82,7 @@ export default {
       }
     },
     async changePage () {
+      this.$store.dispatch('resetTimerTime')
       clearInterval(this.timer)
       if (this.isAnswer) {
         await this.postAnswer()
