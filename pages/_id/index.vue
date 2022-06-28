@@ -6,11 +6,12 @@
       <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
       <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
     </ul>
-    <input v-model="nickName" type="text" class="shadow"><input>
+    <input v-model="nickName" type="text" class="shadow" /><input />
     <button @click.once="sendNickName">確定</button>
     <div>
       <p>this page url</p>
       <p>{{ pageUrl }}</p>
+      <button @click="copyLink">リンクをコピー</button>
     </div>
     <div v-if="host">
       <button @click.once="gameStart">ゲームスタート</button>
@@ -21,7 +22,7 @@
 <script>
 export default {
   name: 'IndexPage',
-  data () {
+  data() {
     return {
       members: [],
       nickName: '',
@@ -29,9 +30,12 @@ export default {
       pageUrl: ''
     }
   },
-  mounted () {
+  mounted() {
     this.pageUrl = window.location.href
-    this.$store.commit('setRoomId', window.location.href.split('/').slice(-1)[0])
+    this.$store.commit(
+      'setRoomId',
+      window.location.href.split('/').slice(-1)[0]
+    )
     this.host = this.$store.state.host
     // this.roomCreate()
     // this.$store.commit('setHost')
@@ -39,20 +43,24 @@ export default {
     this.showMember()
   },
   methods: {
-    showMember () {
+    showMember() {
       const self = this
-      setInterval(function () { self.getAllMember() }, 5000)
+      setInterval(function () {
+        self.getAllMember()
+      }, 5000)
     },
-    async getAllMember () {
+    async getAllMember() {
       const url = '/room/guests/' + this.$store.state.roomId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
         this.members = response.data[0].guests
       }
     },
-    async sendNickName () {
+    async sendNickName() {
       const url = '/room/guests/' + this.$store.state.roomId
-      const response = await this.$axios.post(url, { name: String(this.nickName) })
+      const response = await this.$axios.post(url, {
+        name: String(this.nickName)
+      })
       if (response.status === 200) {
         this.$store.commit('setNickName', String(this.nickName))
         // console.log(response.data)
@@ -61,11 +69,13 @@ export default {
         }
       }
     },
-    wait () {
+    wait() {
       const self = this
-      setInterval(function () { self.getActiveState() }, 3000)
+      setInterval(function () {
+        self.getActiveState()
+      }, 3000)
     },
-    async getActiveState () {
+    async getActiveState() {
       const url = '/room/active/' + this.$store.state.roomId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
@@ -77,7 +87,7 @@ export default {
         }
       }
     },
-    async gameStart () {
+    async gameStart() {
       const url = '/room/active/' + this.$store.state.roomId
       const response = await this.$axios.post(url, '')
       if (response.status === 200) {
@@ -86,6 +96,9 @@ export default {
         this.$store.commit('setStartTime', response.data.timestamp)
         this.$router.push(this.$store.state.roomId + '/collectQuestions')
       }
+    },
+    copyLink() {
+      navigator.clipboard.writeText(this.pageUrl.toString())
     }
     // async roomCreate () {
     //   const url = '/room/create'
