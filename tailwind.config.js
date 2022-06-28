@@ -6,7 +6,8 @@ module.exports = {
     extend: {
       colors: {
         'my-black': '#080544',
-        'my-yellow': '#FFDC76'
+        'my-yellow': '#FFDC76',
+        'my-mid-yellow': '#FEF4D6'
       }
     }
   },
