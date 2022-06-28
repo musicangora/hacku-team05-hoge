@@ -6,7 +6,7 @@
     >
       <!--- ヘッダー -->
       <div class="h-28 m-4 flex justify-center items-center text-center">
-        <img class="w-28" src="~assets/images/hacku-05.png">
+        <img class="w-28" src="~assets/images/hacku-05.png" />
       </div>
 
       <!-- <div>
@@ -33,7 +33,7 @@
               type="text"
               class="w-80 h-11 p-3 text-lg text-gray-400 focus:text-gray-700 bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
               value="ルーム名#3246"
-            >
+            />
           </div>
           <!--- ボタン -->
           <button
@@ -48,7 +48,7 @@
         <!--- 右半分 -->
         <div class="flex flex-col items-center text-center w-1/2 h-full">
           <div
-            class="mt-4 w-2/3 h-full bg-my-yellow border-4 border-yellow-50 rounded-xl"
+            class="mt-4 w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
           >
             <p
               class="text-xl text-ol-white-2 font-bold text-red-500 transform -translate-y-4"
