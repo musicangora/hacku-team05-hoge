@@ -31,14 +31,14 @@ export default {
   },
   mounted () {
     this.getAllMember()
-    this.showMaxAnser()
+    this.showMaxAnswer()
     this.host = this.$store.state.host
   },
   methods: {
     getAllMember () {
       this.members = this.$store.state.members
     },
-    showMaxAnser () {
+    showMaxAnswer () {
       const self = this
       this.intervalId = setInterval(function () { self.getMaxAnswer() }, 1000)
     },
@@ -47,7 +47,7 @@ export default {
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
         if (response.data.linkedAnser.length === this.$store.state.members.length) {
-          this.answer = response.data.linkedAnser[0]
+          this.answer = response.data.linkedAnser[0] // ここだけバックエンドもスペルミスがあるのでアンサーがそのまま
           clearInterval(this.intervalId)
         } else {
           this.answer = response.data[0]

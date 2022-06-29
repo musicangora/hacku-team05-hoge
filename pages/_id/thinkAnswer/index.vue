@@ -10,8 +10,6 @@
     <p>お題に関する自分なりの回答を考えよう！</p>
     <p>タイマーがゼロになり自動送信されるまでじっくり考えよう！</p>
     <TextInput ref="textInput" :type="'answer'" />
-    <!-- 以下実際はタイマーでページ遷移 -->
-    <!-- <NuxtLink to="/:id/decideAnser">時間が来ました</NuxtLink> -->
   </div>
 </template>
 
@@ -21,13 +19,13 @@ export default {
   data () {
     return {
       countDownTime: 60,
-      url: '/:id/decideAnser',
+      url: '/:id/decideAnswer',
       questions: []
     }
   },
   created () {
     // this.setCountDownTime()
-    this.url = '/' + this.$store.state.roomId + '/decideAnser'
+    this.url = '/' + this.$store.state.roomId + '/decideAnswer'
   },
   mounted () {
     // this.roomCreate()

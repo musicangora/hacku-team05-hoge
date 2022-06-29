@@ -1,8 +1,6 @@
 <template>
   <div>
     <p>ここはお題を決めるページ</p>
-    <!-- 以下実際はタイマーでページ遷移 -->
-    <!-- <NuxtLink to="/:id/thinkAnser">時間が来ました</NuxtLink> -->
     <div class="w-20 h-50">
       <Timer :time="Number(countDownTime)" :url="url" />
     </div>
@@ -35,7 +33,7 @@ export default {
     }
   },
   created () {
-    this.url = '/' + this.$store.state.roomId + '/thinkAnser'
+    this.url = '/' + this.$store.state.roomId + '/thinkAnswer'
   },
   mounted () {
     this.showQuestions()
