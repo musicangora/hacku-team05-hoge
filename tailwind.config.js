@@ -25,6 +25,10 @@ module.exports = {
           textShadow:
             '2px 2px 0px #FEFEFE, -2px 2px 0px #FEFEFE, 2px -2px 0px #FEFEFE, -2px -2px 0px #FEFEFE'
         },
+        '.text-ol-black-2': {
+          textShadow:
+            '2px 2px 0px #333333, -2px 2px 0px #333333, 2px -2px 0px #333333, -2px -2px 0px #333333'
+        },
         '.text-ol-white-4': {
           textShadow:
             '4px 4px 0px #FEFEFE, -4px 4px 0px #FEFEFE, 4px -4px 0px #FEFEFE, -4px -4px 0px #FEFEFE'

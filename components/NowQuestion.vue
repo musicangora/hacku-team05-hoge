@@ -1,22 +1,25 @@
 <template>
   <div>
-    <h3>お題: {{ question.title }}</h3>
+    <p class="font-bold text-lg text-red-500 text-ol-white-2 mb-1">お題</p>
+    <h3 class="font-bold text-3xl text-yellow-50 text-ol-black-2 mb-1">
+      {{ question.title }}
+    </h3>
   </div>
 </template>
 
 <script>
 export default {
   name: 'NowQuestion',
-  data () {
+  data() {
     return {
       question: {}
     }
   },
-  mounted () {
+  mounted() {
     this.getNowQuestion()
   },
   methods: {
-    async getNowQuestion () {
+    async getNowQuestion() {
       if (!Object.keys(this.$store.state.nowThemeInfo).length) {
         const url = '/theme/max/' + this.$store.state.roomId // voteが最大のQuestionsを取得する
         const response = await this.$axios.get(url, {})
@@ -31,5 +34,4 @@ export default {
     }
   }
 }
-
 </script>
