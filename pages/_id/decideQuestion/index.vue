@@ -9,8 +9,13 @@
     <UserList />
     <p>面白そうなお題を話し合いながら自分がしたいお題に投票しよう！</p>
     <ul>
-      <li v-for="(question, key) in questions" :key="key">{{ question.createdUserName }} {{ question.title }}
-        <button @click="voteQuestion(question.id)">good</button>
+      <li v-for="(question, key) in questions" :key="key">
+        <button @click="voteQuestion(question.id,key)">
+          {{ question.createdUserName }} {{ question.title }} good
+          <span v-if=" question.numberOfVotes !== 0">
+            {{ question.numberOfVotes }}
+          </span>
+        </button>
       </li>
     </ul>
     <div v-if=" maxVoteCount - voteCount > 0">
@@ -48,8 +53,9 @@ export default {
         this.questions = response.data.themes
       }
     },
-    async voteQuestion (questionId) {
+    async voteQuestion (questionId, index) {
       if (this.maxVoteCount > this.voteCount) {
+        this.questions[index].numberOfVotes += 1
         const url = '/theme/vote/' + questionId
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
