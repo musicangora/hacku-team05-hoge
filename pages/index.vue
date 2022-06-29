@@ -76,9 +76,11 @@ export default {
       const url = '/room/create'
       const response = await this.$axios.post(url)
       if (response.status === 200) {
+        this.$store.commit('setMembers', [])
+        this.$store.commit('setNickName', '')
         this.$store.commit('setRoomId', response.data.room_id)
         this.$store.commit('setHost')
-        this.$router.push(this.$store.state.roomId)
+        this.$router.push('/' + this.$store.state.roomId)
       }
     }
   }

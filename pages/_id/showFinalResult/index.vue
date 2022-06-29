@@ -13,7 +13,7 @@
     <p>{{ answer.title }}</p>
     <button>結果を共有！</button>
     <div v-if="host">
-      <button @click.once="gameStart">もう一度！</button>
+      <button @click.once="gameRestart">もう一度！</button>
     </div>
   </div>
 </template>
@@ -33,6 +33,8 @@ export default {
     this.getAllMember()
     this.showMaxAnser()
     this.host = this.$store.state.host
+    const self = this
+    setInterval(function () { self.checkNextGame() }, 5000)
   },
   methods: {
     getAllMember () {
@@ -54,8 +56,20 @@ export default {
         }
       }
     },
-    gameStart () {
-      console.log('もう一度遊ぶ')
+    async gameRestart () {
+      const url = '/room/create'
+      const response = await this.$axios.post(url)
+      if (response.status === 200) {
+        this.$store.commit('setRoomId', response.data.room_id)
+        this.$store.commit('setHost')
+        await this.$axios.post('/room/guests/' + response.data.room_id, {
+          name: String(this.$store.state.myNickName)
+        })
+        this.$router.push('/' + this.$store.state.roomId)
+      }
+    },
+
+    checkNextGame () {
       // this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
     }
   }
