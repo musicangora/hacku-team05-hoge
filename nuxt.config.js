@@ -25,7 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/localStorage.js' },
+    { src: '~/plugins/localStorage.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -54,11 +54,11 @@ export default {
     // proxy: true,
     // baseURL: 'http://localhost:8080'
 
-    /*本番環境*/
-    baseURL: 'https://hacku-api.waku-waku-club.com/',
+    /* 本番環境 */
+    baseURL: 'https://hacku-api.waku-waku-club.com/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  },
+  }
 }

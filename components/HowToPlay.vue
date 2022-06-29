@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>遊び方</h2>
     <ol class="list-decimal ml-5">
       <li>ルームを作ってみんなを招待しよう</li>
       <li>ニックネームを入力してゲームスタート！</li>
