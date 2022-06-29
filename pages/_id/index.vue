@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center bg-yellow-300 h-screen w-full">
     <!--- メインパネル -->
     <div
-      class="flex flex-col w-[1024px] h-4/6 border-4 border-yellow-400 rounded-3xl"
+      class="flex flex-col w-[1024px] h-[660px] border-4 border-yellow-400 rounded-3xl"
     >
       <!--- ヘッダー -->
       <div class="h-20 m-4 flex justify-center items-center text-center">
