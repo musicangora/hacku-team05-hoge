@@ -31,7 +31,15 @@
                 class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
               >
                 {{ member.name }}
+                <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
+                  @ホスト
+                </div>
               </li>
+              <!-- <li
+                class="flex items-center justify-between bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
+              >
+                わいはホストや！
+              </li> -->
             </ul>
           </div>
 
