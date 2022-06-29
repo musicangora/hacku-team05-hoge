@@ -20,6 +20,7 @@ export const mutations = {
   },
   setStartTime (state, startTime) {
     state.startTime = startTime
+    state.startTimeTS = startTime
   },
   setNowThemeInfo (state, theme) {
     state.nowThemeInfo = theme
