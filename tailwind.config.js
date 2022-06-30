@@ -8,7 +8,8 @@ module.exports = {
         'my-black': '#080544',
         'my-yellow': '#FFDC76',
         'my-mid-yellow': '#FEF4D6'
-      }
+      },
+      animation: {}
     }
   },
   variants: {
@@ -24,6 +25,10 @@ module.exports = {
         '.text-ol-white-2': {
           textShadow:
             '2px 2px 0px #FEFEFE, -2px 2px 0px #FEFEFE, 2px -2px 0px #FEFEFE, -2px -2px 0px #FEFEFE'
+        },
+        '.text-ol-black-2': {
+          textShadow:
+            '2px 2px 0px #333333, -2px 2px 0px #333333, 2px -2px 0px #333333, -2px -2px 0px #333333'
         },
         '.text-ol-white-4': {
           textShadow:

@@ -7,7 +7,7 @@
       >
         <!--- ヘッダー -->
         <div class="h-20 m-4 flex justify-center items-center text-center">
-          <img class="w-20" src="~assets/images/hacku-05.png">
+          <img class="w-20" src="~assets/images/hacku-05.png" />
         </div>
 
         <!--- メインコンテンツ -->
@@ -16,33 +16,37 @@
           <div
             class="flex flex-col justify-center items-center text-center w-1/2 h-full"
           >
-            <div
-              class="mt-4 w-2/3 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl"
+            <p class="text-xl text-ol-white-2 font-bold text-my-black">
+              参加メンバー
+            </p>
+            <ul
+              class="w-2/3 overflow-y-auto h-48 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-2"
             >
-              <p
-                class="text-xl text-ol-white-2 font-bold text-my-black transform -translate-y-4"
-              >
-                参加メンバー
-              </p>
-              <ul class="overflow-y-scroll h-44 transform -translate-y-2">
-                <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
-                <li
-                  v-for="(member, key) in members"
-                  :key="key"
-                  class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
-                >
-                  {{ member.name }}
-                  <!-- <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
-                    @ホスト
-                  </div> -->
-                </li>
+              <UserListPanel
+                v-for="(member, key) in members"
+                :key="key"
+                :member-name="member.name"
+              />
+
+              <!-- TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
+              <!-- <UserListPanel
+                v-for="(member, key) in members"
+                :key="key"
+                :member-name="member.name"
+                :type="'host'"
+              /> -->
+
               <!-- <li
-                class="flex items-center justify-between bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
+                v-for="(member, key) in members"
+                :key="key"
+                class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 rounded-r-md rounded-l-full"
               >
-                わいはホストや！
+                {{ c }}
+                 <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
+                    @ホスト
+                  </div>
               </li> -->
-              </ul>
-            </div>
+            </ul>
 
             <!--- テキスト入力フィールド -->
             <div class="flex items-center m-4">
@@ -57,7 +61,7 @@
                   type="text"
                   class="w-64 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
                   value="ニックネーム#2453"
-                >
+                />
               </div>
               <!--- ボタン -->
               <button
@@ -77,7 +81,7 @@
                   メンバー招待用リンク
                 </div>
                 <p
-                  class="w-64 h-8 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
+                  class="w-64 h-8 text-left pl-2 pt-1 overflow-x-auto text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
                 >
                   {{ pageUrl }}
                 </p>
@@ -94,14 +98,10 @@
 
           <!--- 右半分 -->
           <div class="flex flex-col items-center text-center w-1/2 h-full">
+            <p class="text-xl text-ol-white-2 font-bold text-red-500">遊び方</p>
             <div
-              class="mt-4 w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
+              class="w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
             >
-              <p
-                class="text-xl text-ol-white-2 font-bold text-red-500 transform -translate-y-4"
-              >
-                遊び方
-              </p>
               <HowToPlay />
             </div>
           </div>
@@ -118,7 +118,7 @@
               <img
                 class="w-4 inline-block pb-1 mr-1"
                 src="~assets/images/start.png"
-              >開始
+              />開始
             </button>
           </div>
         </div>
@@ -128,8 +128,10 @@
 </template>
 
 <script>
+import UserListPanel from '../../components/UserListPanel.vue'
 export default {
   name: 'IndexPage',
+  components: { UserListPanel },
   data() {
     return {
       members: [],
@@ -156,7 +158,9 @@ export default {
   methods: {
     showMember() {
       const self = this
-      this.memberInterval = setInterval(function () { self.getAllMember() }, 5000)
+      this.memberInterval = setInterval(function () {
+        self.getAllMember()
+      }, 5000)
     },
     async getAllMember() {
       const url = '/room/guests/' + this.$store.state.roomId
@@ -179,7 +183,9 @@ export default {
     },
     wait() {
       const self = this
-      this.waitInterval = setInterval(function () { self.getActiveState() }, 3000)
+      this.waitInterval = setInterval(function () {
+        self.getActiveState()
+      }, 3000)
     },
     async getActiveState() {
       const url = '/room/active/' + this.$store.state.roomId
@@ -187,8 +193,13 @@ export default {
       if (response.status === 200) {
         if (response.data.isActive) {
           // this.$store.state.startTime = response.data.timestamp
-          this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
-          this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+          this.$store.commit(
+            'setStartTime',
+            Date.parse(response.data.timestamp)
+          )
+          this.$router.push(
+            '/' + this.$store.state.roomId + '/collectQuestions'
+          )
           clearInterval(this.waitInterval)
           clearInterval(this.memberInterval)
         }
