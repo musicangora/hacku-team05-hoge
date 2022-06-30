@@ -1,11 +1,13 @@
 <template>
-  <div class="flex items-center m-4 my-2">
-    <div v-if="type == 'question'" class="mr-8">
+  <div class="w-full m-4 my-2">
+    <div v-if="type == 'question'" class="flex items-center mr-8">
       <div
         class="pl-4 mb-0.5 text-left text-xs font-bold text-ol-white-2"
         for="question"
       >
-        お題
+        お題<span class="text-sm text-red-600 pl-4 font-bold text-ol-white-2">{{
+          errors.question
+        }}</span>
       </div>
       <input
         v-model="question"
@@ -13,21 +15,27 @@
         class="w-96 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
         :placeholder="questionPlaceholder"
       />
-      <span>{{ errors.question }}</span>
     </div>
 
-    <div v-if="type == 'answer'">
-      <label for="answer">あなたの回答</label>
+    <div v-if="type == 'answer'" class="flex flex-col items-center">
+      <label
+        class="mb-1 text-xl font-bold text-red-500 text-ol-white-2"
+        for="answer"
+        >あなたの回答を入力</label
+      >
       <input
         ref="send"
         v-model="answer"
         type="text"
+        class="w-1/2 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
         :placeholder="answerPlaceholder"
       />
-      <span>{{ errors.answer }}</span>
+      <span class="text-sm text-red-600 mt-1 font-bold text-ol-white-2">{{
+        errors.answer
+      }}</span>
     </div>
 
-    <div v-if="type == 'question'">
+    <div v-if="type == 'question'" class="flex flex-col">
       <button
         class="w-32 h-11 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
         type="button"

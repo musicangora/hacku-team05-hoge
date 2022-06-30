@@ -1,7 +1,12 @@
 <template>
   <div>
-    <p class="font-bold text-lg text-red-500 text-ol-white-2 mb-1">お題</p>
-    <h3 class="font-bold text-3xl text-yellow-50 text-ol-black-2 mb-1">
+    <p
+      v-if="type == 'answer'"
+      class="font-bold text-lg text-red-500 text-ol-white-2 mb-1"
+    >
+      お題
+    </p>
+    <h3 class="font-bold text-3xl text-yellow-50 text-ol-black-2">
       {{ question.title }}
     </h3>
   </div>
@@ -10,6 +15,13 @@
 <script>
 export default {
   name: 'NowQuestion',
+  props: {
+    type: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
   data() {
     return {
       question: {}

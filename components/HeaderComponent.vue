@@ -5,7 +5,7 @@
       <UserList />
     </div>
     <div v-if="type == 'answer'">
-      <NowQuestion />
+      <NowQuestion :type="'answer'" class="mb-1" />
     </div>
 
     <div v-if="type == 'question'">
@@ -25,7 +25,7 @@
 
     <div v-if="type == 'think'">
       <h2 class="font-bold text-2xl text-red-500 text-ol-white-2 mb-1">
-        回答を考えよう
+        自分なりの回答を考えよう！
       </h2>
     </div>
     <div v-if="type == 'think'" class="w-20 h-20">

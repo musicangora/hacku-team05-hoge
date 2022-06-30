@@ -12,25 +12,21 @@
         :is-answer="true"
         :post-answer="postAnswer"
       />
-      <!-- <div class="w-20 h-50">
-        <Timer
-          :time="Number(countDownTime)"
-          :url="url"
-          :is-answer="true"
-          :post-answer="postAnswer"
-        /> -->
       <div class="flex flex-col items-center h-full">
         <!--- お題パネル -->
-        <p class="font-bold text-xl text-ol-white-2 mb-1">お題</p>
-        <div
-          class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8 mb-4"
-        />
 
-        <!-- <UserList /> -->
-        <NowQuestion />
-        <p>お題に関する自分なりの回答を考えよう！</p>
-        <p>タイマーがゼロになり自動送信されるまでじっくり考えよう！</p>
-        <TextInput ref="textInput" :type="'answer'" />
+        <p class="font-bold text-2xl text-ol-white-2 mb-0.5 mt-8">お題</p>
+        <div
+          class="flex items-center justify-center w-4/5 h-1/4 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8 mb-4"
+        >
+          <NowQuestion />
+        </div>
+
+        <!--- テキスト入力 -->
+        <TextInput ref="textInput" :type="'answer'" class="mt-16" />
+        <p class="font-bold text-left text-sm text-my-black text-ol-white-2">
+          タイマーがゼロになると自動送信されるよ！
+        </p>
         <!-- 以下実際はタイマーでページ遷移 -->
         <!-- <NuxtLink to="/:id/decideAnser">時間が来ました</NuxtLink> -->
       </div>
@@ -43,7 +39,7 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      countDownTime: 60000000, // DEBUG
+      countDownTime: 60,
       url: '/:id/decideAnser',
       questions: []
     }
