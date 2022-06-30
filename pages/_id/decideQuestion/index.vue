@@ -110,8 +110,9 @@ export default {
         this.questions = response.data.themes
       }
     },
-    async voteQuestion(questionId) {
+    async voteQuestion (questionId, index) {
       if (this.maxVoteCount > this.voteCount) {
+        this.questions[index].numberOfVotes += 1
         const url = '/theme/vote/' + questionId
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {

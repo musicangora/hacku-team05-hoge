@@ -12,7 +12,6 @@
         :time="Number(countDownTime)"
         :url="url"
       />
-
       <!-- お題パネル -->
       <div class="flex flex-col items-center h-full">
         <!--- お題パネル -->
@@ -120,8 +119,9 @@ export default {
         }
       }
     },
-    async voteAnser(anserId) {
+    async voteAnser (anserId, index) {
       if (this.maxVoteCount > this.voteCount) {
+        this.ansers[index].numberOfVotes += 1
         const url = '/answer/vote/' + anserId
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
