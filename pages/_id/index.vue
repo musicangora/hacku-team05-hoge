@@ -98,14 +98,10 @@
 
           <!--- 右半分 -->
           <div class="flex flex-col items-center text-center w-1/2 h-full">
+            <p class="text-xl text-ol-white-2 font-bold text-red-500">遊び方</p>
             <div
-              class="mt-4 w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
+              class="w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
             >
-              <p
-                class="text-xl text-ol-white-2 font-bold text-red-500 transform -translate-y-4"
-              >
-                遊び方
-              </p>
               <HowToPlay />
             </div>
           </div>
