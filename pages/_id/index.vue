@@ -113,13 +113,16 @@
             <!-- <div> -->
             <button
               class="w-36 h-11 pt-0.5 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
-              @click.once="gameStart"
+              @click="gameStart"
             >
               <img
                 class="w-4 inline-block pb-1 mr-1"
                 src="~assets/images/start.png"
               >開始
             </button>
+            <div class="mt-2">
+              <p>{{ canNotStart }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -138,7 +141,10 @@ export default {
       pageUrl: '',
       placeholder: 'ニックネーム',
       waitInterval: null,
-      memberInterval: null
+      memberInterval: null,
+      canNotStart: '',
+      gameStartFlag: false
+
     }
   },
   mounted() {
@@ -195,12 +201,21 @@ export default {
       }
     },
     async gameStart() {
-      const url = '/room/active/' + this.$store.state.roomId
-      const response = await this.$axios.post(url, '')
-      if (response.status === 200) {
-        this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
-        this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
-        clearInterval(this.memberInterval)
+      if (this.members.length >= 2 && this.$store.state.myNickName) {
+        if (!this.gameStartFlag) {
+          const url = '/room/active/' + this.$store.state.roomId
+          const response = await this.$axios.post(url, '')
+          if (response.status === 200) {
+            this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
+            this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+            clearInterval(this.memberInterval)
+            this.gameStartFlag = true
+          }
+        } else {
+          console.log('何度も押さないでーーー')
+        }
+      } else {
+        this.canNotStart = 'ゲームを始めるには自分を含め少なくとも2名以上のニックネームの登録が必要です。'
       }
     },
     copyLink() {
