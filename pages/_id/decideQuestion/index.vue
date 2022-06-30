@@ -61,6 +61,7 @@
             :vote-id="question.id"
             :vote-number="question.numberOfVotes"
           />
+          <li v-if="questions.length == 0">お題を生成中…</li>
         </ul>
 
         <div class="flex flex-col items-center justify-center mt-4">
@@ -109,7 +110,14 @@ export default {
       const url = '/theme/read/' + this.$store.state.roomId
       const response = await this.$axios.get(url, '')
       if (response.status === 200) {
-        this.questions = response.data.themes
+        if (response.data.themes.length > 0) {
+          this.questions = response.data.themes
+        } else if (this.$store.state.host) {
+          this.$axios.post('/theme/create/' + this.$store.state.roomId, {
+            theme: 'ヤフーのいいところは？',
+            name: '(自動生成)'
+          })
+        }
       }
     },
     setQuestionInterval() {
