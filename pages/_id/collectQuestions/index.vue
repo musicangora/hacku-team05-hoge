@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import ListPanel from '../../../components/listPanel.vue'
+import ListPanel from '../../../components/istPanel.vue'
 export default {
   name: 'IndexPage',
   components: { ListPanel },
