@@ -65,7 +65,7 @@
               <div v-if="host">
                 <button
                   class="w-52 h-11 pt-0.5 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
-                  @click.once="gameReStart"
+                  @click.once="gameRestart"
                 >
                   もう一度遊ぶ！
                 </button>

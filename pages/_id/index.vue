@@ -153,7 +153,10 @@ export default {
       placeholder: 'ニックネーム#2435',
       waitInterval: null,
       memberInterval: null,
-      isSnackbarShowing: false
+      canNotStart: '',
+      gameStartFlag: false,
+      isSnackbarShowing: false,
+      isEntered: false
     }
   },
   mounted() {

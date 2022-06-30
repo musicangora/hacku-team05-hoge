@@ -59,6 +59,7 @@
             :title="question.title"
             :vote-function="voteQuestion"
             :vote-id="question.id"
+            :vote-number="question.numberOfVotes"
           />
         </ul>
 
@@ -101,6 +102,7 @@ export default {
   },
   mounted() {
     this.showQuestions()
+    this.setQuestionInterval()
   },
   methods: {
     async showQuestions() {
@@ -110,9 +112,15 @@ export default {
         this.questions = response.data.themes
       }
     },
+    setQuestionInterval() {
+      const self = this
+      setInterval(function () {
+        self.showQuestions()
+      }, 5000)
+    },
     async voteQuestion (questionId, index) {
       if (this.maxVoteCount > this.voteCount) {
-        this.questions[index].numberOfVotes += 1
+        // this.questions[index].numberOfVotes += 1
         const url = '/theme/vote/' + questionId
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {

@@ -9,6 +9,7 @@
     </p>
     <div class="flex justify-between">
       <p class="text-base transform -translate-y-3">{{ title }}</p>
+      <span v-if="type == 'decide'">{{ voteNumber }}</span>
       <button
         v-if="type == 'decide'"
         @click="
@@ -50,6 +51,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    voteNumber: {
+      type: Number,
+      required: false,
+      default: 0
     },
     type: {
       type: String,
