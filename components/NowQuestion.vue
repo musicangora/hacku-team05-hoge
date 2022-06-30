@@ -8,6 +8,7 @@
     </p>
     <h3 class="font-bold text-3xl text-yellow-50 text-ol-black-2">
       {{ question.title }}
+      <!-- なんかいい感じのお題！ -->
     </h3>
   </div>
 </template>
