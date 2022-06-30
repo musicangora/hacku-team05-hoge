@@ -46,11 +46,13 @@
             <p class="text-base transform -translate-y-3">
               {{ anser.title }}
             </p>
-            <button @click="voteAnser(anser.id)">
-              <img
-                class="w-4 inline-block pb-1 mr-1"
-                src="~assets/images/start.png"
-              />
+            <button
+              @click="
+                voteAnser(anser.id)
+                changeGoodIcon()
+              "
+            >
+              <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
             </button>
           </li>
         </ul>
