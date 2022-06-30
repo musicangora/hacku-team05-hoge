@@ -67,7 +67,7 @@
               <button
                 class="w-32 h-11 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
                 :disabled="isEntered"
-                @click.once="sendNickName"
+                @click="sendNickName"
               >
                 決定
               </button>
@@ -198,15 +198,17 @@ export default {
       }
     },
     async sendNickName() {
-      const url = '/room/guests/' + this.$store.state.roomId
-      const response = await this.$axios.post(url, {
+      if (this.nickName !== '') {
+        const url = '/room/guests/' + this.$store.state.roomId
+        const response = await this.$axios.post(url, {
         name: String(this.nickName)
-      })
-      if (response.status === 200) {
-        this.isEntered = true
-        this.$store.commit('setNickName', String(this.nickName))
-        if (!this.host) {
-          this.wait()
+        })
+        if (response.status === 200) {
+          this.isEntered = true
+          this.$store.commit('setNickName', String(this.nickName))
+          if (!this.host) {
+            this.wait()
+          }
         }
       }
     },
