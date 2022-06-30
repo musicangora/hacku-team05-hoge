@@ -20,9 +20,9 @@
           みんなの考えたお題
         </p>
         <ul
-          class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8 mb-4"
+          class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8 mb-2"
         >
-          <li
+          <!-- <li
             v-for="(question, key) in questions"
             :key="key"
             class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-8 rounded-r-md rounded-l-full"
@@ -35,19 +35,13 @@
             <p class="text-base transform -translate-y-3">
               {{ question.title }}
             </p>
-          </li>
-          <!-- <li
-            class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-8 rounded-r-md rounded-l-full"
-          >
-            <p
-              class="font-bold text-left text-xs text-ol-white-2 pb-2 transform -translate-y-4"
-            >
-              ニックネーム
-            </p>
-            <p class="text-base transform -translate-y-3">
-              「あ」から始まる食べ物は？
-            </p>
           </li> -->
+          <ListPanel
+            v-for="(question, key) in questions"
+            :key="key"
+            :user-name="question.createdUserName"
+            :title="question.title"
+          />
         </ul>
         <!-- <p>確定したら反映されるよ！</p> -->
 
@@ -62,8 +56,10 @@
 </template>
 
 <script>
+import ListPanel from '../../../components/listPanel.vue'
 export default {
   name: 'IndexPage',
+  components: { ListPanel },
   data() {
     return {
       countDownTime: 60,

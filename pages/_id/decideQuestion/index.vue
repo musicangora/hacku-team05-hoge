@@ -23,7 +23,7 @@
         <ul
           class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8"
         >
-          <li
+          <!-- <li
             v-for="(question, key) in questions"
             :key="key"
             class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-6 rounded-r-md rounded-l-full"
@@ -33,31 +33,16 @@
             >
               {{ question.createdUserName }}
             </p>
-            <p class="text-base transform -translate-y-3">
-              {{ question.title }}
-            </p>
-            <button
-              @click="
-                voteQuestion(question.id)
-                changeGoodIcon()
-              "
-            >
-              <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
-            </button>
-          </li>
-
-          <!--- DEBUG -->
-          <li
-            class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-6 rounded-r-md rounded-l-full"
-          >
-            <p
-              class="font-bold text-left text-xs text-ol-white-2 pb-2 transform -translate-y-4"
-            >
-              ニックネーム
-            </p>
             <div class="flex justify-between">
-              <p class="text-base transform -translate-y-3">いい感じのお題</p>
-              <button @click="changeGoodIcon()">
+              <p class="text-base transform -translate-y-3">
+                {{ question.title }}
+              </p>
+              <button
+                @click="
+                  voteQuestion(question.id)
+                  changeGoodIcon()
+                "
+              >
                 <img
                   class="w-4 inline-block mr-4 transform -translate-y-3"
                   :class="{ 'animate-bounce': isClick }"
@@ -65,8 +50,16 @@
                 />
               </button>
             </div>
-          </li>
-          <!-- DEBUG -->
+          </li> -->
+          <ListPanel
+            v-for="(question, key) in questions"
+            :key="key"
+            :type="'decide'"
+            :user-name="question.createdUserName"
+            :title="question.title"
+            :vote-function="voteQuestion"
+            :vote-id="question.id"
+          />
         </ul>
 
         <div class="flex flex-col items-center justify-center mt-4">
@@ -88,17 +81,19 @@
 </template>
 
 <script>
+import ListPanel from '../../../components/listPanel.vue'
 export default {
   name: 'IndexPage',
+  components: { ListPanel },
   data() {
     return {
-      countDownTime: 30000000, // DEBUG
+      countDownTime: 30,
       url: '',
       questions: [],
       voteCount: 0,
-      maxVoteCount: 10,
-      isClick: false,
-      goodIconSrc: require('~/assets/images/good-line.png')
+      maxVoteCount: 10
+      // isClick: false,
+      // goodIconSrc: require('~/assets/images/good-line.png')
     }
   },
   created() {
@@ -123,11 +118,11 @@ export default {
           this.voteCount += 1
         }
       }
-    },
-    changeGoodIcon() {
-      this.isClick = true
-      this.goodIconSrc = require('~/assets/images/good-fill.png')
     }
+    // changeGoodIcon() {
+    //   this.isClick = true
+    //   this.goodIconSrc = require('~/assets/images/good-fill.png')
+    // }
   }
 }
 </script>

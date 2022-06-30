@@ -24,7 +24,7 @@
         <ul
           class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8"
         >
-          <li
+          <!-- <li
             v-for="(anser, key) in ansers"
             :key="key"
             class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-6 rounded-r-md rounded-l-full"
@@ -45,7 +45,17 @@
             >
               <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
             </button>
-          </li>
+          </li> -->
+
+          <ListPanel
+            v-for="(anser, key) in ansers"
+            :key="key"
+            :type="'decide'"
+            :user-name="anser.createdUserName"
+            :title="anser.title"
+            :vote-function="voteAnser"
+            :vote-id="anser.id"
+          />
         </ul>
 
         <div class="flex flex-col items-center justify-center mt-4">
@@ -67,8 +77,10 @@
 </template>
 
 <script>
+import ListPanel from '../../../components/listPanel.vue'
 export default {
   name: 'IndexPage',
+  components: { ListPanel },
   data() {
     return {
       countDownTime: 90,
@@ -76,8 +88,8 @@ export default {
       ansers: [],
       voteCount: 0,
       maxVoteCount: 10,
-      intervalId: null,
-      goodIconSrc: '/_nuxt/assets/images/good-line.png'
+      intervalId: null
+      // goodIconSrc: '/_nuxt/assets/images/good-line.png'
     }
   },
   created() {
@@ -116,10 +128,11 @@ export default {
           this.voteCount += 1
         }
       }
-    },
-    changeGoodIcon() {
-      this.goodIconSrc = '/_nuxt/assets/images/good-fill.png'
     }
+    // changeGoodIcon() {
+    //   alert('change')
+    //   this.goodIconSrc = '/_nuxt/assets/images/good-fill.png'
+    // }
   }
 }
 </script>
