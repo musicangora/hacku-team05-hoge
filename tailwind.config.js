@@ -8,7 +8,8 @@ module.exports = {
         'my-black': '#080544',
         'my-yellow': '#FFDC76',
         'my-mid-yellow': '#FEF4D6'
-      }
+      },
+      animation: {}
     }
   },
   variants: {

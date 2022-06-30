@@ -55,10 +55,16 @@
             >
               ニックネーム
             </p>
-            <p class="text-base transform -translate-y-3">いい感じのお題</p>
-            <button @click="changeGoodIcon()">
-              <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
-            </button>
+            <div class="flex justify-between">
+              <p class="text-base transform -translate-y-3">いい感じのお題</p>
+              <button @click="changeGoodIcon()">
+                <img
+                  class="w-4 inline-block mr-4 transform -translate-y-3"
+                  :class="{ 'animate-bounce': isClick }"
+                  :src="goodIconSrc"
+                />
+              </button>
+            </div>
           </li>
           <!-- DEBUG -->
         </ul>
@@ -91,7 +97,8 @@ export default {
       questions: [],
       voteCount: 0,
       maxVoteCount: 10,
-      goodIconSrc: '/_nuxt/assets/images/good-line.png'
+      isClick: false,
+      goodIconSrc: require('~/assets/images/good-line.png')
     }
   },
   created() {
@@ -118,7 +125,8 @@ export default {
       }
     },
     changeGoodIcon() {
-      this.goodIconSrc = '/_nuxt/assets/images/good-fill.png'
+      this.isClick = true
+      this.goodIconSrc = require('~/assets/images/good-fill.png')
     }
   }
 }
