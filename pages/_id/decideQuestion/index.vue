@@ -70,7 +70,7 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      countDownTime: 300000000,
+      countDownTime: 30,
       url: '',
       questions: [],
       voteCount: 0,
