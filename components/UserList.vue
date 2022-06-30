@@ -1,6 +1,11 @@
 <template>
   <div>
-    <button @click="toggleList">現在のメンバー: {{ members.length }}人(クリックして一覧表示)</button>
+    <button
+      class="font-bold text-lg text-my-black text-ol-white-2"
+      @click="toggleList"
+    >
+      参加者: {{ members.length }}人
+    </button>
     <ul v-if="expanded">
       <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
     </ul>
@@ -10,20 +15,20 @@
 <script>
 export default {
   name: 'UserList',
-  data () {
+  data() {
     return {
       members: [],
       expanded: false
     }
   },
-  mounted () {
+  mounted() {
     this.getMember()
   },
   methods: {
-    toggleList () {
+    toggleList() {
       this.expanded = !this.expanded
     },
-    async getMember () {
+    async getMember() {
       if (this.$store.state.members.length === 0) {
         const url = '/room/guests/' + this.$store.state.roomId
         const response = await this.$axios.get(url)
@@ -37,5 +42,4 @@ export default {
     }
   }
 }
-
 </script>

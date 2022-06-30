@@ -6,7 +6,7 @@
     >
       <!--- ヘッダー -->
       <div class="h-28 m-4 flex justify-center items-center text-center">
-        <img class="w-28" src="~assets/images/hacku-05.png">
+        <img class="w-28" src="~assets/images/hacku-05.png" />
       </div>
 
       <!-- <div>
@@ -21,7 +21,15 @@
         <div
           class="flex flex-col justify-center items-center text-center w-1/2"
         >
-          <div class="w-56 h-56">なんかいい感じのロゴ</div>
+          <div class="w-56 h-56">
+            <h2 class="font-bold text-2xl text-my-black mb-0.5 mt-4">
+              共感を集めて<br />1つの答えを<br />みんなで出すゲーム
+            </h2>
+            <img
+              class="h-16 inline-block m-2"
+              src="~assets/images/good_icon.png"
+            />
+          </div>
           <!--- テキスト入力フィールド -->
           <div>
             <div
@@ -33,7 +41,7 @@
               type="text"
               class="w-80 h-11 p-3 text-lg text-gray-400 focus:text-gray-700 bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
               value="ルーム名#3246"
-            >
+            />
           </div>
           <!--- ボタン -->
           <button
@@ -47,14 +55,10 @@
 
         <!--- 右半分 -->
         <div class="flex flex-col items-center text-center w-1/2 h-full">
+          <p class="text-xl text-ol-white-2 font-bold text-red-500">遊び方</p>
           <div
-            class="mt-4 w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
+            class="w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
           >
-            <p
-              class="text-xl text-ol-white-2 font-bold text-red-500 transform -translate-y-4"
-            >
-              遊び方
-            </p>
             <HowToPlay />
             <!-- <p>内容</p> -->
           </div>
@@ -68,8 +72,7 @@
 export default {
   name: 'IndexPage',
   data() {
-    return {
-    }
+    return {}
   },
   methods: {
     async createRoom() {
