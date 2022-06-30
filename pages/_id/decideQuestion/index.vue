@@ -21,7 +21,7 @@
           みんなの考えたお題
         </p>
         <ul
-          class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-scroll p-4 py-8"
+          class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8"
         >
           <li
             v-for="(question, key) in questions"
