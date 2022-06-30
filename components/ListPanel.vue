@@ -16,9 +16,10 @@
           voteFunction(voteId)
         "
       >
+        <!-- isClickでクリックアニメーションを入れたかった…… -->
         <img
-          class="w-4 inline-block mr-4 transform -translate-y-3"
-          :class="{ 'animate-bounce': isClick }"
+          class="w-5 inline-block mr-4 transform -translate-y-3 opacity-70 hover:opacity-100"
+          :class="{ 'opacity-100': isClick }"
           :src="goodIconSrc"
         />
       </button>
