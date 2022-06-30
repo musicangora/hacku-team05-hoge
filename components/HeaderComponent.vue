@@ -4,8 +4,16 @@
       <img class="w-20 mb-1" src="~assets/images/hacku-05.png" />
       <UserList />
     </div>
-    <div>
+    <div v-if="type == 'answer'">
       <NowQuestion />
+    </div>
+    <div v-if="type == 'question'">
+      <h2 class="font-bold text-3xl text-red-500 text-ol-white-2 mb-1">
+        いいと思ったお題にいいね<img
+          class="h-10 inline-block pb-2 ml-2 mr-1"
+          src="~assets/images/good_icon.png"
+        />しよう！
+      </h2>
     </div>
     <div class="w-20 h-20">
       <Timer :time="time" :url="url" />
@@ -26,6 +34,10 @@ export default {
       type: String,
       required: false,
       default: '/'
+    },
+    type: {
+      type: String,
+      required: true
     }
   }
 }

@@ -7,14 +7,18 @@
       <!-- 以下実際はタイマーでページ遷移 -->
       <!-- <NuxtLink to="/:id/thinkAnser">時間が来ました</NuxtLink> -->
       <!--- ヘッダー -->
-      <HeaderComponent :time="Number(countDownTime)" :url="url" />
+      <HeaderComponent
+        :type="'question'"
+        :time="Number(countDownTime)"
+        :url="url"
+      />
       <!-- お題パネル -->
       <div class="flex flex-col items-center h-full">
         <!--- お題パネル -->
         <p
           class="font-bold text-left text-sm text-ol-white-2 mb-1 transform -translate-x-80"
         >
-          みんなの回答
+          みんなの考えたお題
         </p>
         <ul
           class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-scroll p-4 py-8"

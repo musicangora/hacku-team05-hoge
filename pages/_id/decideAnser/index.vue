@@ -7,7 +7,11 @@
       <!-- 以下実際はタイマーでページ遷移 -->
       <!-- <NuxtLink to="/:id/showFinalResult">時間が来ました</NuxtLink> -->
       <!--- ヘッダー -->
-      <HeaderComponent :time="Number(countDownTime)" :url="url" />
+      <HeaderComponent
+        :type="'answer'"
+        :time="Number(countDownTime)"
+        :url="url"
+      />
 
       <!-- お題パネル -->
       <div class="flex flex-col items-center h-full">
