@@ -7,20 +7,7 @@
       <!-- 以下実際はタイマーでページ遷移 -->
       <!-- <NuxtLink to="/:id/showFinalResult">時間が来ました</NuxtLink> -->
       <!--- ヘッダー -->
-      <div
-        class="h-20 mx-10 my-8 flex justify-between items-center text-center"
-      >
-        <div class="flex flex-col justify-center items-center">
-          <img class="w-20 mb-1" src="~assets/images/hacku-05.png" />
-          <UserList />
-        </div>
-        <div>
-          <NowQuestion />
-        </div>
-        <div class="w-20 h-20">
-          <Timer :time="Number(countDownTime)" :url="url" />
-        </div>
-      </div>
+      <HeaderComponent :time="Number(countDownTime)" :url="url" />
 
       <!-- お題パネル -->
       <div class="flex flex-col items-center h-full">
