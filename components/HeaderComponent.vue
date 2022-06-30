@@ -7,6 +7,7 @@
     <div v-if="type == 'answer'">
       <NowQuestion />
     </div>
+
     <div v-if="type == 'question'">
       <h2 class="font-bold text-3xl text-red-500 text-ol-white-2 mb-1">
         いいと思ったお題にいいね<img
@@ -15,12 +16,27 @@
         />しよう！
       </h2>
     </div>
+
     <div v-if="type == 'collect'">
       <h2 class="font-bold text-3xl text-red-500 text-ol-white-2 mb-1">
         議論のお題を考えよう！
       </h2>
     </div>
-    <div class="w-20 h-20">
+
+    <div v-if="type == 'think'">
+      <h2 class="font-bold text-2xl text-red-500 text-ol-white-2 mb-1">
+        回答を考えよう
+      </h2>
+    </div>
+    <div v-if="type == 'think'" class="w-20 h-20">
+      <Timer
+        :time="time"
+        :url="url"
+        :is-answer="isAnswer"
+        :post-answer="postAnswer"
+      />
+    </div>
+    <div v-else class="w-20 h-20">
       <Timer :time="time" :url="url" />
     </div>
   </div>
@@ -39,6 +55,16 @@ export default {
       type: String,
       required: false,
       default: '/'
+    },
+    isAnswer: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    postAnswer: {
+      type: Function,
+      required: false,
+      default: () => {}
     },
     type: {
       type: String,
