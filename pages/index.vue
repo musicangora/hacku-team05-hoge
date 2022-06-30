@@ -21,7 +21,15 @@
         <div
           class="flex flex-col justify-center items-center text-center w-1/2"
         >
-          <div class="w-56 h-56">なんかいい感じのロゴ</div>
+          <div class="w-56 h-56">
+            <h2 class="font-bold text-2xl text-my-black mb-0.5 mt-4">
+              共感を集めて<br />1つの答えを<br />みんなで出すゲーム
+            </h2>
+            <img
+              class="h-16 inline-block m-2"
+              src="~assets/images/good_icon.png"
+            />
+          </div>
           <!--- テキスト入力フィールド -->
           <div>
             <div
