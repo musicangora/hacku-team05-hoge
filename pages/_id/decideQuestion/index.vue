@@ -15,11 +15,11 @@
       <!-- お題パネル -->
       <div class="flex flex-col items-center h-full">
         <!--- お題パネル -->
-        <p
-          class="font-bold text-left text-sm text-ol-white-2 mb-1 transform -translate-x-80"
-        >
-          みんなの考えたお題
-        </p>
+        <div class="w-3/4">
+          <p class="font-bold text-left text-sm text-ol-white-2 mb-1 pl-4">
+            みんなの考えたお題
+          </p>
+        </div>
         <ul
           class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8"
         >
