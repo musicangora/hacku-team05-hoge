@@ -26,10 +26,16 @@
                 v-for="(member, key) in members"
                 :key="key"
                 :member-name="member.name"
-                :type="'host'"
               />
 
               <!-- TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
+              <!-- <UserListPanel
+                v-for="(member, key) in members"
+                :key="key"
+                :member-name="member.name"
+                :type="'host'"
+              /> -->
+
               <!-- <li
                 v-for="(member, key) in members"
                 :key="key"
