@@ -15,11 +15,11 @@
       <!-- お題パネル -->
       <div class="flex flex-col items-center h-full">
         <!--- お題パネル -->
-        <p
-          class="font-bold text-left text-sm text-ol-white-2 mb-1 transform -translate-x-80"
-        >
-          みんなの考えたお題
-        </p>
+        <div class="w-3/4">
+          <p class="font-bold text-left text-sm text-ol-white-2 mb-1 pl-4">
+            みんなの考えたお題
+          </p>
+        </div>
         <ul
           class="flex flex-wrap items-center w-3/4 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-8"
         >
@@ -45,6 +45,22 @@
               <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
             </button>
           </li>
+
+          <!--- DEBUG -->
+          <li
+            class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-6 rounded-r-md rounded-l-full"
+          >
+            <p
+              class="font-bold text-left text-xs text-ol-white-2 pb-2 transform -translate-y-4"
+            >
+              ニックネーム
+            </p>
+            <p class="text-base transform -translate-y-3">いい感じのお題</p>
+            <button @click="changeGoodIcon()">
+              <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
+            </button>
+          </li>
+          <!-- DEBUG -->
         </ul>
 
         <div class="flex flex-col items-center justify-center mt-4">
@@ -70,11 +86,12 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      countDownTime: 30,
+      countDownTime: 30000000, // DEBUG
       url: '',
       questions: [],
       voteCount: 0,
-      maxVoteCount: 10
+      maxVoteCount: 10,
+      goodIconSrc: '/_nuxt/assets/images/good-line.png'
     }
   },
   created() {
@@ -99,6 +116,9 @@ export default {
           this.voteCount += 1
         }
       }
+    },
+    changeGoodIcon() {
+      this.goodIconSrc = '/_nuxt/assets/images/good-fill.png'
     }
   }
 }
