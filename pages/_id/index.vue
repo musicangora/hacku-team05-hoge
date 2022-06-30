@@ -9,7 +9,6 @@
         <div class="h-20 m-4 flex justify-center items-center text-center">
           <img class="w-20" src="~assets/images/hacku-05.png">
         </div>
-
         <!--- メインコンテンツ -->
         <div class="flex justify-center items-center">
           <!--- 左半分 -->
@@ -56,7 +55,7 @@
                   v-model="nickName"
                   type="text"
                   class="w-64 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
-                  value="ニックネーム#2453"
+                  :placeholder="placeholder"
                 >
               </div>
               <!--- ボタン -->
@@ -77,21 +76,26 @@
                   メンバー招待用リンク
                 </div>
                 <p
-                  class="w-64 h-8 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
+                  class="w-64 h-15 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
                 >
-                  {{ pageUrl }}
+                  【アイスブレイクアプリ】 Niiiiice!<br>
+                  招待URL：{{ pageUrl }}
                 </p>
               </div>
-              <!--- ボタン -->
-              <button
-                class="w-36 h-8 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-2 border-my-black rounded-lg text-sm font-bold button-shadow active:button-shadow-none active:transform active:translate-y-0.5"
-                @click="copyLink"
-              >
-                リンクをコピー
-              </button>
+              <div class="relative">
+                <!--- ボタン -->
+                <button
+                  class="w-36 h-8 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-2 border-my-black rounded-lg text-sm font-bold button-shadow active:button-shadow-none active:transform active:translate-y-0.5"
+                  @click="copyLink"
+                >
+                  招待
+                </button>
+                <div v-if="isSnackbarShowing" class="absolute top-16" role="alert">
+                  <p class="text-xs">リンクをコピーしたよ！</p>
+                </div>
+              </div>
             </div>
           </div>
-
           <!--- 右半分 -->
           <div class="flex flex-col items-center text-center w-1/2 h-full">
             <div
@@ -136,9 +140,10 @@ export default {
       nickName: '',
       host: false,
       pageUrl: '',
-      placeholder: 'ニックネーム',
+      placeholder: 'ニックネーム#2435',
       waitInterval: null,
-      memberInterval: null
+      memberInterval: null,
+      isSnackbarShowing: false
     }
   },
   mounted() {
@@ -154,6 +159,13 @@ export default {
     this.showMember()
   },
   methods: {
+    showSnackbar () {
+      this.isSnackbarShowing = true
+      setTimeout(() => {
+        this.isSnackbarShowing = false
+      }, 3000
+      )
+    },
     showMember() {
       const self = this
       this.memberInterval = setInterval(function () { self.getAllMember() }, 5000)
@@ -205,6 +217,7 @@ export default {
     },
     copyLink() {
       navigator.clipboard.writeText(this.pageUrl.toString())
+      this.showSnackbar()
     }
   }
 }
