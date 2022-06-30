@@ -14,19 +14,14 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '~/plugins/localStorage.js' }
-  ],
+  plugins: [{ src: '~/plugins/localStorage.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -51,14 +46,13 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
 
     /* テスト環境 */
-    // proxy: true,
-    // baseURL: 'http://localhost:8080'
+    proxy: false,
+    baseURL: 'http://localhost:8080'
 
     /* 本番環境 */
-    baseURL: 'https://hacku-api.waku-waku-club.com/'
+    // baseURL: 'https://hacku-api.waku-waku-club.com/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }
