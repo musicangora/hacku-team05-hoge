@@ -65,7 +65,7 @@
               <div v-if="host">
                 <button
                   class="w-52 h-11 pt-0.5 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
-                  @click.once="gameStart"
+                  @click.once="gameReStart"
                 >
                   もう一度遊ぶ！
                 </button>
@@ -96,6 +96,8 @@ export default {
     this.getAllMember()
     this.showMaxAnser()
     this.host = this.$store.state.host
+    const self = this
+    setInterval(function () { self.checkNextGame() }, 5000)
   },
   methods: {
     getAllMember() {
@@ -121,8 +123,19 @@ export default {
         }
       }
     },
-    gameStart() {
-      console.log('もう一度遊ぶ')
+    async gameRestart () {
+      const url = '/room/create'
+      const response = await this.$axios.post(url)
+      if (response.status === 200) {
+        this.$store.commit('setRoomId', response.data.room_id)
+        this.$store.commit('setHost')
+        await this.$axios.post('/room/guests/' + response.data.room_id, {
+          name: String(this.$store.state.myNickName)
+        })
+        this.$router.push('/' + this.$store.state.roomId)
+      }
+    },
+    checkNextGame () {
       // this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
     }
   }

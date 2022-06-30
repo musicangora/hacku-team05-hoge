@@ -58,6 +58,7 @@
                 </div>
                 <input
                   v-model="nickName"
+                  :disabled="isEntered"
                   type="text"
                   class="w-64 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
                   value="ニックネーム#2453"
@@ -66,10 +67,14 @@
               <!--- ボタン -->
               <button
                 class="w-32 h-11 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
+                :disabled="isEntered"
                 @click.once="sendNickName"
               >
                 決定
               </button>
+            </div>
+            <div v-if="isEntered && !host" class="flex items-center mb-4">
+              <p>ルームに参加しました！ホストがゲームを開始するまでしばらくお待ちください。</p>
             </div>
 
             <!--- テキスト入力フィールド -->
@@ -139,6 +144,7 @@ export default {
       host: false,
       pageUrl: '',
       placeholder: 'ニックネーム',
+      isEntered: false,
       waitInterval: null,
       memberInterval: null
     }
@@ -153,7 +159,12 @@ export default {
     // this.roomCreate()
     // this.$store.commit('setHost')
     // this.host = this.$store.state.host
+    this.getAllMember()
     this.showMember()
+    if (this.host && this.$store.state.myNickName !== '') {
+      this.isEntered = true
+      this.nickName = this.$store.state.myNickName
+    }
   },
   methods: {
     showMember() {
@@ -175,6 +186,7 @@ export default {
         name: String(this.nickName)
       })
       if (response.status === 200) {
+        this.isEntered = true
         this.$store.commit('setNickName', String(this.nickName))
         if (!this.host) {
           this.wait()
