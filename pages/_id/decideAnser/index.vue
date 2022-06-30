@@ -11,8 +11,13 @@
     <p>自分の回答のアピールをして共感を集めよう！みんなの回答に共感したら投票しよう！</p>
     <p>みんなの回答</p>
     <ul>
-      <li v-for="(anser,key) in ansers" :key="key">{{ anser.createdUserName }} {{ anser.title }}
-        <button @click="voteAnser(anser.id)">good</button>
+      <li v-for="(anser,key) in ansers" :key="key">
+        <button @click="voteAnser(anser.id,key)">
+          {{ anser.createdUserName }} {{ anser.title }} good
+          <span v-if=" anser.numberOfVotes !== 0">
+            {{ anser.numberOfVotes }}
+          </span>
+        </button>
       </li>
     </ul>
 
@@ -61,8 +66,9 @@ export default {
         }
       }
     },
-    async voteAnser (anserId) {
+    async voteAnser (anserId, index) {
       if (this.maxVoteCount > this.voteCount) {
+        this.ansers[index].numberOfVotes += 1
         const url = '/answer/vote/' + anserId
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
