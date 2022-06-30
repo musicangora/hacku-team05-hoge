@@ -40,8 +40,8 @@
             <input
               type="text"
               class="w-80 h-11 p-3 text-lg text-gray-400 focus:text-gray-700 bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
-              value="ルーム名#3246"
-            />
+              :placeholder="placeholder"
+            >
           </div>
           <!--- ボタン -->
           <button
@@ -72,7 +72,9 @@
 export default {
   name: 'IndexPage',
   data() {
-    return {}
+    return {
+      placeholder: 'ルーム名#3246'
+    }
   },
   methods: {
     async createRoom() {

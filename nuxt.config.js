@@ -12,7 +12,12 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      // { hid: 'og:site_name', property: 'og:site_name', content: 'Niiiiice!' },
+      { hid: 'og:url', property: 'og:url', content: 'https://hacku-api.waku-waku-club.com/' },
+      { hid: 'og:title', property: 'og:title', content: 'Niiiiice!' },
+      { hid: 'og:description', property: 'og:description', content: '共通認識＆アイスブレイクを同時に！' }
+      // { hid: 'og:image', property: 'og:image', content: '/assets/images/hacku-05.png' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
