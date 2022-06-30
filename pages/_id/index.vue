@@ -16,33 +16,31 @@
           <div
             class="flex flex-col justify-center items-center text-center w-1/2 h-full"
           >
-            <div
-              class="mt-4 w-2/3 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl"
+            <p class="text-xl text-ol-white-2 font-bold text-my-black">
+              参加メンバー
+            </p>
+            <ul
+              class="w-2/3 overflow-y-auto h-48 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-2"
             >
-              <p
-                class="text-xl text-ol-white-2 font-bold text-my-black transform -translate-y-4"
+              <UserListPanel
+                v-for="(member, key) in members"
+                :key="key"
+                :member-name="member.name"
+                :type="'host'"
+              />
+
+              <!-- TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
+              <!-- <li
+                v-for="(member, key) in members"
+                :key="key"
+                class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 rounded-r-md rounded-l-full"
               >
-                参加メンバー
-              </p>
-              <ul class="overflow-y-auto h-44 transform -translate-y-2">
-                <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
-                <li
-                  v-for="(member, key) in members"
-                  :key="key"
-                  class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
-                >
-                  {{ member.name }}
-                  <!-- <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
+                {{ c }}
+                 <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
                     @ホスト
-                  </div> -->
-                </li>
-                <!-- <li
-                class="flex items-center justify-between bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
-              >
-                わいはホストや！
+                  </div>
               </li> -->
-              </ul>
-            </div>
+            </ul>
 
             <!--- テキスト入力フィールド -->
             <div class="flex items-center m-4">
@@ -128,8 +126,10 @@
 </template>
 
 <script>
+import UserListPanel from '../../components/UserListPanel.vue'
 export default {
   name: 'IndexPage',
+  components: { UserListPanel },
   data() {
     return {
       members: [],
