@@ -45,6 +45,28 @@
               <img class="w-4 inline-block pb-1 mr-1" :src="goodIconSrc" />
             </button>
           </li>
+
+          <!--- DEBUG -->
+          <li
+            class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-80 text-left pl-8 m-4 mb-6 rounded-r-md rounded-l-full"
+          >
+            <p
+              class="font-bold text-left text-xs text-ol-white-2 pb-2 transform -translate-y-4"
+            >
+              ニックネーム
+            </p>
+            <div class="flex justify-between">
+              <p class="text-base transform -translate-y-3">いい感じのお題</p>
+              <button @click="changeGoodIcon()">
+                <img
+                  class="w-4 inline-block mr-4 transform -translate-y-3"
+                  :class="{ 'animate-bounce': isClick }"
+                  :src="goodIconSrc"
+                />
+              </button>
+            </div>
+          </li>
+          <!-- DEBUG -->
         </ul>
 
         <div class="flex flex-col items-center justify-center mt-4">
@@ -70,11 +92,13 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      countDownTime: 30,
+      countDownTime: 30000000, // DEBUG
       url: '',
       questions: [],
       voteCount: 0,
-      maxVoteCount: 10
+      maxVoteCount: 10,
+      isClick: false,
+      goodIconSrc: require('~/assets/images/good-line.png')
     }
   },
   created() {
@@ -99,6 +123,10 @@ export default {
           this.voteCount += 1
         }
       }
+    },
+    changeGoodIcon() {
+      this.isClick = true
+      this.goodIconSrc = require('~/assets/images/good-fill.png')
     }
   }
 }
