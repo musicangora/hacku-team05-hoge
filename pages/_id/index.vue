@@ -7,7 +7,7 @@
       >
         <!--- ヘッダー -->
         <div class="h-20 m-4 flex justify-center items-center text-center">
-          <img class="w-20" src="~assets/images/hacku-05.png">
+          <img class="w-20" src="~assets/images/hacku-05.png" />
         </div>
 
         <!--- メインコンテンツ -->
@@ -24,7 +24,7 @@
               >
                 参加メンバー
               </p>
-              <ul class="overflow-y-scroll h-44 transform -translate-y-2">
+              <ul class="overflow-y-auto h-44 transform -translate-y-2">
                 <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
                 <li
                   v-for="(member, key) in members"
@@ -36,7 +36,7 @@
                     @ホスト
                   </div> -->
                 </li>
-              <!-- <li
+                <!-- <li
                 class="flex items-center justify-between bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
               >
                 わいはホストや！
@@ -57,7 +57,7 @@
                   type="text"
                   class="w-64 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
                   value="ニックネーム#2453"
-                >
+                />
               </div>
               <!--- ボタン -->
               <button
@@ -77,7 +77,7 @@
                   メンバー招待用リンク
                 </div>
                 <p
-                  class="w-64 h-8 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
+                  class="w-64 h-8 text-left pl-2 pt-1 overflow-x-auto text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
                 >
                   {{ pageUrl }}
                 </p>
@@ -118,7 +118,7 @@
               <img
                 class="w-4 inline-block pb-1 mr-1"
                 src="~assets/images/start.png"
-              >開始
+              />開始
             </button>
           </div>
         </div>
@@ -156,7 +156,9 @@ export default {
   methods: {
     showMember() {
       const self = this
-      this.memberInterval = setInterval(function () { self.getAllMember() }, 5000)
+      this.memberInterval = setInterval(function () {
+        self.getAllMember()
+      }, 5000)
     },
     async getAllMember() {
       const url = '/room/guests/' + this.$store.state.roomId
@@ -179,7 +181,9 @@ export default {
     },
     wait() {
       const self = this
-      this.waitInterval = setInterval(function () { self.getActiveState() }, 3000)
+      this.waitInterval = setInterval(function () {
+        self.getActiveState()
+      }, 3000)
     },
     async getActiveState() {
       const url = '/room/active/' + this.$store.state.roomId
@@ -187,8 +191,13 @@ export default {
       if (response.status === 200) {
         if (response.data.isActive) {
           // this.$store.state.startTime = response.data.timestamp
-          this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
-          this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+          this.$store.commit(
+            'setStartTime',
+            Date.parse(response.data.timestamp)
+          )
+          this.$router.push(
+            '/' + this.$store.state.roomId + '/collectQuestions'
+          )
           clearInterval(this.waitInterval)
           clearInterval(this.memberInterval)
         }
