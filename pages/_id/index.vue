@@ -7,7 +7,7 @@
       >
         <!--- ヘッダー -->
         <div class="h-20 m-4 flex justify-center items-center text-center">
-          <img class="w-20" src="~assets/images/hacku-05.png">
+          <img class="w-20" src="~assets/images/hacku-05.png" />
         </div>
         <!--- メインコンテンツ -->
         <div class="flex justify-center items-center">
@@ -15,33 +15,37 @@
           <div
             class="flex flex-col justify-center items-center text-center w-1/2 h-full"
           >
-            <div
-              class="mt-4 w-2/3 h-2/3 bg-my-yellow border-4 border-yellow-50 rounded-xl"
+            <p class="text-xl text-ol-white-2 font-bold text-my-black">
+              参加メンバー
+            </p>
+            <ul
+              class="w-2/3 overflow-y-auto h-48 bg-my-yellow border-4 border-yellow-50 rounded-xl overflow-y-auto p-4 py-2"
             >
-              <p
-                class="text-xl text-ol-white-2 font-bold text-my-black transform -translate-y-4"
-              >
-                参加メンバー
-              </p>
-              <ul class="overflow-y-scroll h-44 transform -translate-y-2">
-                <!--TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
-                <li
-                  v-for="(member, key) in members"
-                  :key="key"
-                  class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
-                >
-                  {{ member.name }}
-                  <!-- <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
-                    @ホスト
-                  </div> -->
-                </li>
+              <UserListPanel
+                v-for="(member, key) in members"
+                :key="key"
+                :member-name="member.name"
+              />
+
+              <!-- TODO: V2でニックネームsend時にhost情報を付加してshow時にhost情報追加 -->
+              <!-- <UserListPanel
+                v-for="(member, key) in members"
+                :key="key"
+                :member-name="member.name"
+                :type="'host'"
+              /> -->
+
               <!-- <li
-                class="flex items-center justify-between bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 ml-8 rounded-r-md rounded-l-full"
+                v-for="(member, key) in members"
+                :key="key"
+                class="flex flex-col justify-center bg-yellow-50 text-sm font-bold text-my-black h-11 w-64 text-left pl-8 m-2 rounded-r-md rounded-l-full"
               >
-                わいはホストや！
+                {{ c }}
+                 <div v-if="host" class="inline-block text-xs pr-4 pt-0.5">
+                    @ホスト
+                  </div>
               </li> -->
-              </ul>
-            </div>
+            </ul>
 
             <!--- テキスト入力フィールド -->
             <div class="flex items-center m-4">
@@ -53,6 +57,7 @@
                 </div>
                 <input
                   v-model="nickName"
+                  :disabled="isEntered"
                   type="text"
                   class="w-64 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
                   :placeholder="placeholder"
@@ -61,10 +66,14 @@
               <!--- ボタン -->
               <button
                 class="w-32 h-11 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
+                :disabled="isEntered"
                 @click.once="sendNickName"
               >
                 決定
               </button>
+            </div>
+            <div v-if="isEntered && !host" class="flex items-center mb-4">
+              <p>ルームに参加しました！ホストがゲームを開始するまでしばらくお待ちください。</p>
             </div>
 
             <!--- テキスト入力フィールド -->
@@ -98,14 +107,10 @@
           </div>
           <!--- 右半分 -->
           <div class="flex flex-col items-center text-center w-1/2 h-full">
+            <p class="text-xl text-ol-white-2 font-bold text-red-500">遊び方</p>
             <div
-              class="mt-4 w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
+              class="w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
             >
-              <p
-                class="text-xl text-ol-white-2 font-bold text-red-500 transform -translate-y-4"
-              >
-                遊び方
-              </p>
               <HowToPlay />
             </div>
           </div>
@@ -117,13 +122,16 @@
             <!-- <div> -->
             <button
               class="w-36 h-11 pt-0.5 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
-              @click.once="gameStart"
+              @click="gameStart"
             >
               <img
                 class="w-4 inline-block pb-1 mr-1"
                 src="~assets/images/start.png"
-              >開始
+              />開始
             </button>
+            <div class="mt-2">
+              <p>{{ canNotStart }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -132,8 +140,10 @@
 </template>
 
 <script>
+import UserListPanel from '../../components/UserListPanel.vue'
 export default {
   name: 'IndexPage',
+  components: { UserListPanel },
   data() {
     return {
       members: [],
@@ -156,7 +166,12 @@ export default {
     // this.roomCreate()
     // this.$store.commit('setHost')
     // this.host = this.$store.state.host
+    this.getAllMember()
     this.showMember()
+    if (this.host && this.$store.state.myNickName !== '') {
+      this.isEntered = true
+      this.nickName = this.$store.state.myNickName
+    }
   },
   methods: {
     showSnackbar () {
@@ -168,7 +183,9 @@ export default {
     },
     showMember() {
       const self = this
-      this.memberInterval = setInterval(function () { self.getAllMember() }, 5000)
+      this.memberInterval = setInterval(function () {
+        self.getAllMember()
+      }, 5000)
     },
     async getAllMember() {
       const url = '/room/guests/' + this.$store.state.roomId
@@ -183,6 +200,7 @@ export default {
         name: String(this.nickName)
       })
       if (response.status === 200) {
+        this.isEntered = true
         this.$store.commit('setNickName', String(this.nickName))
         if (!this.host) {
           this.wait()
@@ -191,7 +209,9 @@ export default {
     },
     wait() {
       const self = this
-      this.waitInterval = setInterval(function () { self.getActiveState() }, 3000)
+      this.waitInterval = setInterval(function () {
+        self.getActiveState()
+      }, 3000)
     },
     async getActiveState() {
       const url = '/room/active/' + this.$store.state.roomId
@@ -199,20 +219,34 @@ export default {
       if (response.status === 200) {
         if (response.data.isActive) {
           // this.$store.state.startTime = response.data.timestamp
-          this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
-          this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+          this.$store.commit(
+            'setStartTime',
+            Date.parse(response.data.timestamp)
+          )
+          this.$router.push(
+            '/' + this.$store.state.roomId + '/collectQuestions'
+          )
           clearInterval(this.waitInterval)
           clearInterval(this.memberInterval)
         }
       }
     },
     async gameStart() {
-      const url = '/room/active/' + this.$store.state.roomId
-      const response = await this.$axios.post(url, '')
-      if (response.status === 200) {
-        this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
-        this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
-        clearInterval(this.memberInterval)
+      if (this.members.length >= 2 && this.$store.state.myNickName) {
+        if (!this.gameStartFlag) {
+          const url = '/room/active/' + this.$store.state.roomId
+          const response = await this.$axios.post(url, '')
+          if (response.status === 200) {
+            this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
+            this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+            clearInterval(this.memberInterval)
+            this.gameStartFlag = true
+          }
+        } else {
+          console.log('何度も押さないでーーー')
+        }
+      } else {
+        this.canNotStart = 'ゲームを始めるには自分を含め少なくとも2名以上のニックネームの登録が必要です。'
       }
     },
     copyLink() {

@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <ol class="list-decimal ml-5">
-      <li>ルームを作ってみんなを招待しよう</li>
-      <li>ニックネームを入力してゲームスタート！</li>
-      <li>議論してみたい話題を考えよう(パクリOK！)
-        <ul class="list-disc ml-5">
-          <li>〇〇年後にも残っていてほしい〇〇</li>
-          <li>「懐かしい」と共感されそうな〇〇</li>
-          <li>もし、〇〇なら〇〇？</li>
-          <li>多分みんな〇〇、身近な豆知識</li>
-          <li>ヤフーのいいところは？</li>
-        </ul>
-      </li>
-      <li>面白そうな話題をみんなで決めよう！</li>
-      <li>共感を集めそうな回答をじっくり考えよう!</li>
-      <li>自分の回答のアピールをして共感を集めよう！</li>
-    </ol>
+  <div class="flex flex-col justify-center items-center h-full">
+    <div class="w-4/5">
+      <p class="text-left font-semibold p-1">1. ルームを作ってみんなを招待！</p>
+      <p class="text-left font-semibold p-1">
+        2. ニックネームを入力して<br />ゲームスタート！
+      </p>
+      <p class="text-left font-semibold p-1">
+        3. 議論してみたいお題を考えよう<br />(マネをしてもOK!)
+      </p>
+      <p class="text-left font-semibold p-1">
+        4. 面白そうなお題をみんなで決めよう！
+      </p>
+      <p class="text-left font-semibold p-1">
+        5. 共感を集めそうな回答をじっくり考えよう!
+      </p>
+      <p class="text-left font-semibold p-1">
+        6. 自分の回答のアピールをして共感を集めよう！
+      </p>
+    </div>
   </div>
 </template>
 

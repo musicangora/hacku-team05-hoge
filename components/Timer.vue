@@ -1,10 +1,14 @@
 <template>
-  <div>
+  <div class="flex flex-col items-center text-center">
     <svg viewBox="-1 -1 2 2" style="transform: rotate(-90deg)">
-      <circle cx="0" cy="0" r="1" fill="#eeeeee" />
+      <circle cx="0" cy="0" r="1" fill="#fcd34d" />
       <path :d="shape" :fill="color" />
     </svg>
-    <p>{{ sec }}</p>
+    <p
+      class="font-bold text-my-black text-2xl text-ol-white-2 transform -translate-y-14"
+    >
+      {{ sec }}
+    </p>
     <!-- <button @click="start">
       スタート
     </button> -->
@@ -35,22 +39,21 @@ export default {
       required: false,
       default: () => {}
     }
-
   },
-  data () {
+  data() {
     return {
       sec: 60,
       nextpage: '/',
       timer: null,
       // 円形周り
       percent: 0,
-      color: '#0ea5e9',
+      color: '#fef3c7',
       currentPercent: 1, // 0 < currentPercent < 1
       // 円の全体を塗りつぶしている初期値
       shape: 'M 1 0 A 1 1 0 1 1 1 -1.133107779529596e-15 L 0 0'
     }
   },
-  async mounted () {
+  async mounted() {
     clearInterval(this.timer)
     const offset = await this.$store.dispatch('fetchTimerOffset')
     this.sec = this.time
@@ -61,27 +64,29 @@ export default {
     this.start()
   },
   methods: {
-    start () {
+    start() {
       const self = this
       this.shape = this.calc()
-      this.timer = setInterval(function () { self.countDown() }, 1000)
+      this.timer = setInterval(function () {
+        self.countDown()
+      }, 1000)
     },
-    countDown () {
+    countDown() {
       if (this.sec > 0) {
         this.sec--
         this.currentPercent -= this.percent
         this.shape = this.calc()
         if (this.sec < this.time / 2) {
-          this.color = '#f97316'
+          this.color = '#fffbeb'
         }
         if (this.sec < this.time / 4) {
-          this.color = '#dc2626'
+          this.color = '#F6313D'
         }
       } else {
         this.changePage()
       }
     },
-    async changePage () {
+    async changePage() {
       this.$store.dispatch('resetTimerTime')
       clearInterval(this.timer)
       if (this.isAnswer) {
@@ -96,27 +101,27 @@ export default {
       }
     },
     // 円形描画
-    getPieVal (per) {
+    getPieVal(per) {
       const x = Math.cos(2 * Math.PI * per)
       const y = Math.sin(2 * Math.PI * per)
       return [x, y]
     },
-    calc () {
+    calc() {
       const [endX, endY] = this.getPieVal(this.currentPercent)
       const largeArcFlag = this.currentPercent > 0.5 ? 1 : 0
       const pathData = [
         'M 1 0',
-          `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`,
-          'L 0 0'
+        `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`,
+        'L 0 0'
       ].join(' ')
       return pathData
     },
-    reset_data () {
+    reset_data() {
       this.sec = 60
       this.nextpage = '/'
       // 円形周り
       this.percent = 0
-      this.color = '#0ea5e9'
+      this.color = '#FEF4D6'
       this.currentPercent = 1
       this.shape = 'M 1 0 A 1 1 0 1 1 1 -1.133107779529596e-15 L 0 0'
     }

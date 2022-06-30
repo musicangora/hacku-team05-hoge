@@ -18,7 +18,22 @@ https://hacku-team05-hoge.web.app/
 
 ### 🎮 How to play
 
+### 📛 Title
+<img src="https://user-images.githubusercontent.com/40447362/176679601-f6609b98-3a03-4ae5-82a6-dcdd8dcff8af.png" />
+
+「共感」のコンセプトから「Nice!」を、開発メンバーの5人を「i」に見立てて「i」を5つ連続させて名付けました！
+
+
+
 ### 🎨 Design
+#### いいね👍 から着想を得たポップなデザイン
+##### Figmaを使ったプロトタイプのデザイン
+<img src="https://user-images.githubusercontent.com/40447362/176675827-08ff34da-84d4-4fbb-a295-78b929c57a6a.png" width=720 />
+
+
+##### 絵文字をベースにしたNiiiiice!なロゴ
+<img src="https://user-images.githubusercontent.com/40447362/176678262-0052a447-dc16-4b4b-b802-87122e10c4f9.png" width=480 />
+
 
 ### ✨ Features
 
