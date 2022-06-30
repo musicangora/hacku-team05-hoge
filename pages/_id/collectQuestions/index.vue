@@ -5,22 +5,11 @@
       class="flex flex-col w-[1024px] h-[660px] border-4 border-yellow-400 rounded-3xl"
     >
       <!--- ヘッダー -->
-      <div
-        class="h-20 mx-10 my-8 flex justify-between items-center text-center"
-      >
-        <div class="flex flex-col justify-center items-center">
-          <img class="w-20 mb-1" src="~assets/images/hacku-05.png" />
-          <UserList />
-        </div>
-        <div>
-          <h2 class="font-bold text-3xl text-red-500 text-ol-white-2 mb-1">
-            議論のお題を考えよう！
-          </h2>
-        </div>
-        <div class="w-20 h-20">
-          <Timer :time="Number(countDownTime)" :url="url" />
-        </div>
-      </div>
+      <HeaderComponent
+        :type="'collect'"
+        :time="Number(countDownTime)"
+        :url="url"
+      />
       <!-- <TextInput :type="'question'" @postComplete="showSnackbar" /> -->
 
       <div class="flex flex-col items-center h-full">

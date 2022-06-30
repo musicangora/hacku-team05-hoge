@@ -15,6 +15,11 @@
         />しよう！
       </h2>
     </div>
+    <div v-if="type == 'collect'">
+      <h2 class="font-bold text-3xl text-red-500 text-ol-white-2 mb-1">
+        議論のお題を考えよう！
+      </h2>
+    </div>
     <div class="w-20 h-20">
       <Timer :time="time" :url="url" />
     </div>
