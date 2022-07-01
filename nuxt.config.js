@@ -15,8 +15,11 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
       // { hid: 'og:site_name', property: 'og:site_name', content: 'Niiiiice!' },
       { hid: 'og:url', property: 'og:url', content: 'https://hacku-api.waku-waku-club.com/' },
-      { hid: 'og:title', property: 'og:title', content: 'Niiiiice!' },
-      { hid: 'og:description', property: 'og:description', content: '共通認識＆アイスブレイクを同時に！' }
+      { hid: 'og:title', property: 'og:title', content: 'Niiiiice! - 共感を集めるゲーム' },
+      { hid: 'og:description', property: 'og:description', content: '共通認識＆アイスブレイクを同時に！' },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'Niiiiice! - 共感を集めるゲーム' },
+      { hid: 'twitter:description', property: 'twitter:description', content: '共通認識＆アイスブレイクを同時に！' }
       // { hid: 'og:image', property: 'og:image', content: '/assets/images/hacku-05.png' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
