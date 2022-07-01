@@ -59,6 +59,7 @@
             <div class="flex justify-evenly w-full">
               <button
                 class="w-52 h-11 pt-0.5 bg-yellow-50 hover:opacity-80 border-4 border-my-black rounded-xl text-lg font-bold button-shadow active:button-shadow-none active:transform active:translate-y-1"
+                @click="resultTweet"
               >
                 結果を共有
               </button>
@@ -89,7 +90,9 @@ export default {
       members: [],
       answer: {},
       host: false,
-      intervalId: null
+      intervalId: null,
+      tweet_text: '',
+      theme: ''
     }
   },
   mounted() {
@@ -102,6 +105,9 @@ export default {
   methods: {
     getAllMember() {
       this.members = this.$store.state.members
+    },
+    getThema() {
+      this.theme = this.$store.state.nowThemeInfo.title
     },
     showMaxAnser() {
       const self = this
@@ -137,6 +143,12 @@ export default {
     },
     checkNextGame () {
       // this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+    },
+    // 結果共有 Twitterへツイート
+    resultTweet () {
+      this.getThema()
+      this.tweet_text = 'https://twitter.com/intent/tweet?text=【お題：' + this.theme + '】私たちの回答は”' + this.answer.title + '”&url=https://hacku-team05-hoge.web.app/' + '&hashtags=Niiiiice,アイスブレイクアプリ'
+      window.open(this.tweet_text, '_blank')
     }
   }
 }
