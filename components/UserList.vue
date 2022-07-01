@@ -1,13 +1,22 @@
 <template>
-  <div>
+  <div class="relative">
     <button
       class="font-bold text-lg text-my-black text-ol-white-2"
       @click="toggleList"
     >
       参加者: {{ members.length }}人
     </button>
-    <ul v-if="expanded">
-      <li v-for="(member, key) in members" :key="key">{{ member.name }}</li>
+    <ul
+      v-if="expanded"
+      class="absolute left-1/2 transform -translate-x-1/2 bg-my-yellow border-2 border-yellow-50 rounded-md px-4 py-2"
+    >
+      <li
+        v-for="(member, key) in members"
+        :key="key"
+        class="font-bold text-xs text-ol-white-2 m-0.5"
+      >
+        {{ member.name }}
+      </li>
     </ul>
   </div>
 </template>
