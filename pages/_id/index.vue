@@ -87,7 +87,6 @@
                 <p
                   class="w-64 h-15 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
                 >
-                  【アイスブレイクアプリ】 Niiiiice!<br>
                   招待URL：{{ pageUrl }}
                 </p>
               </div>
