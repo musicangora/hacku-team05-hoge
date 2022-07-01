@@ -9,20 +9,21 @@
     </p>
     <div class="flex justify-between">
       <p class="text-base transform -translate-y-3">{{ title }}</p>
-      <span v-if="type == 'decide'">{{ voteNumber }}</span>
       <button
         v-if="type == 'decide'"
+        class="flex items-center -translate-y-3 -translate-x-2"
         @click="
           changeGoodIcon()
-          voteFunction(voteId)
+          voteFunction(voteId,voteIndex)
         "
       >
         <!-- isClickでクリックアニメーションを入れたかった…… -->
         <img
-          class="w-5 inline-block mr-4 transform -translate-y-3 opacity-70 hover:opacity-100"
+          class=" w-5 inline-block mr-4 transform -translate-y+3 opacity-70 hover:opacity-100"
           :class="{ 'opacity-100': isClick }"
           :src="goodIconSrc"
-        />
+        >
+        <p v-if="type == 'decide'" class="transform -translate-x-3">{{ voteNumber }}</p>
       </button>
     </div>
   </li>
@@ -40,12 +41,7 @@ export default {
     title: {
       type: String,
       required: false,
-      default: 'いい感じのお題'
-    },
-    voteFunction: {
-      type: Function,
-      required: false,
-      default: () => {}
+      default: '回答間に合わず(T_T)'
     },
     voteId: {
       type: String,
@@ -61,6 +57,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    voteIndex: {
+      type: Number,
+      required: false,
+      default: 0
     }
   },
   data() {
@@ -73,6 +74,9 @@ export default {
     changeGoodIcon() {
       this.isClick = true
       this.goodIconSrc = require('~/assets/images/good-fill.png')
+    },
+    voteFunction(id, index) {
+      this.$emit('updateCount', id, index)
     }
   }
 }
