@@ -137,7 +137,9 @@
               />開始
             </button>
             <div class="mt-2">
-              <p>{{ canNotStart }}</p>
+              <p class="font-bold text-base text-red-500 text-ol-white-2">
+                {{ canNotStart }}
+              </p>
             </div>
           </div>
         </div>
