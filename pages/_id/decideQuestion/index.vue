@@ -57,9 +57,10 @@
             :type="'decide'"
             :user-name="question.createdUserName"
             :title="question.title"
-            :vote-function="voteQuestion"
             :vote-id="question.id"
             :vote-number="question.numberOfVotes"
+            :vote-index="key"
+            @updateCount="updateCount"
           />
           <li v-if="questions.length == 0">お題を生成中…</li>
         </ul>
@@ -103,7 +104,7 @@ export default {
   },
   mounted() {
     this.showQuestions()
-    this.setQuestionInterval()
+    // this.setQuestionInterval()
   },
   methods: {
     async showQuestions() {
@@ -126,20 +127,16 @@ export default {
         self.showQuestions()
       }, 5000)
     },
-    async voteQuestion (questionId, index) {
+    async updateCount(id, index) {
       if (this.maxVoteCount > this.voteCount) {
-        // this.questions[index].numberOfVotes += 1
-        const url = '/theme/vote/' + questionId
+        this.questions[index].numberOfVotes += 1
+        const url = '/theme/vote/' + id
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
           this.voteCount += 1
         }
       }
     }
-    // changeGoodIcon() {
-    //   this.isClick = true
-    //   this.goodIconSrc = require('~/assets/images/good-fill.png')
-    // }
   }
 }
 </script>
