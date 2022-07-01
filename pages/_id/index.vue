@@ -209,7 +209,7 @@ export default {
       if (this.nickName !== '') {
         const url = '/room/guests/' + this.$store.state.roomId
         const response = await this.$axios.post(url, {
-        name: String(this.nickName)
+          name: String(this.nickName)
         })
         if (response.status === 200) {
           this.isEntered = true

@@ -6,7 +6,7 @@ export default {
   head: {
     title: 'Niiiiice! - 共感を集めるゲーム',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
