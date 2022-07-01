@@ -29,11 +29,48 @@ module.exports = {
             transform: 'translateY(0) scale(1)',
             opacity: '0'
           }
+        },
+        toplogo: {
+          '0%': { transform: 'rotate(-15deg)' },
+          '50%': { transform: 'rotate(-15deg)' },
+          '51%': { transform: 'rotate(0deg) scale(0.6)' },
+          '52%': { transform: 'scale(1.2)' },
+          '53%': { transform: 'rotate(-15deg) scale(1.2)' },
+          '54%': { transform: 'rotate(-15deg)' },
+          '56%': { transform: 'rotate(0deg) scale(1)' },
+          '57%': { transform: 'rotate(-15deg) scale(1)' },
+          '100%': { transform: 'rotate(-15deg)' }
+        },
+        toptext: {
+          '0%': { transform: 'rotate(0)' },
+          '50%': { transform: 'rotate(0)' },
+          '52%': { transform: 'rotate(-5deg) scale(1)' },
+          '53%': { transform: 'rotate(12deg) scale(1.1)' },
+          '54%': { transform: 'rotate(-12deg) scale(1.1)' },
+          '55%': { transform: 'rotate(12deg) scale(1.1)' },
+          '56%': { transform: 'rotate(-12deg) scale(1.1)' },
+          '57%': { transform: 'rotate(5deg) scale(1)' },
+          '58%': { transform: 'rotate(0)' },
+          '100%': { transform: 'rotate(0)' }
+        },
+        topbg: {
+          '0%': { transform: 'translateX(-50%)' },
+          '49%': { transform: 'translateX(-50%)' },
+          '50%': { transform: 'translateX(-50%) scale(1)' },
+          '52%': { transform: 'translateX(-50%) scale(1.2)' },
+          '53%': { transform: 'translateX(-50%) scale(0.8)' },
+          '55%': { transform: 'translateX(-50%) scale(1.2)' },
+          '57%': { transform: 'translateX(-50%) scale(0.9)' },
+          '58%': { transform: 'translateX(-50%) scale(1)' },
+          '100%': { transform: 'translateX(-50%)' }
         }
       },
       animation: {
         wiggle: 'wiggle 0.5s ease-in-out',
-        nice: 'nice 0.5s ease-in-out'
+        nice: 'nice 0.5s ease-in-out',
+        toplogo: 'toplogo 8s ease-in-out infinite',
+        toptext: 'toptext 8s ease-in-out infinite',
+        topbg: 'topbg 8s ease-in-out infinite'
       }
     }
   },
