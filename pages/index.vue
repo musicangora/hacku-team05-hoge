@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center bg-yellow-300 h-screen w-full">
     <!--- メインパネル -->
     <div
-      class="flex flex-col w-[1024px] h-[660px] border-4 border-yellow-400 rounded-3xl"
+      class="mx-8 md:mx-0 flex flex-col w-[1024px] h-[660px] border-4 border-yellow-400 rounded-3xl"
     >
       <!--- ヘッダー -->
       <div class="h-28 m-4 flex justify-center items-center text-center">
@@ -19,7 +19,7 @@
       <div class="flex justify-center items-center">
         <!--- 左半分 -->
         <div
-          class="flex flex-col justify-center items-center text-center w-1/2"
+          class="flex flex-col justify-center items-center text-center md:w-1/2"
         >
           <div class="w-56 h-56">
             <h2 class="font-bold text-2xl text-my-black mb-0.5 mt-4">
@@ -41,7 +41,7 @@
               type="text"
               class="w-80 h-11 p-3 text-lg text-gray-400 focus:text-gray-700 bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
               :placeholder="placeholder"
-            >
+            />
           </div>
           <!--- ボタン -->
           <button
@@ -54,7 +54,9 @@
         </div>
 
         <!--- 右半分 -->
-        <div class="flex flex-col items-center text-center w-1/2 h-full">
+        <div
+          class="hidden md:flex flex-col items-center text-center w-1/2 h-full"
+        >
           <p class="text-xl text-ol-white-2 font-bold text-red-500">遊び方</p>
           <div
             class="w-2/3 h-[354px] bg-my-yellow border-4 border-yellow-50 rounded-xl"
