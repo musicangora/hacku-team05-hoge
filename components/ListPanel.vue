@@ -7,23 +7,34 @@
     >
       {{ userName }}
     </p>
-    <div class="flex justify-between">
-      <p class="text-base transform -translate-y-3">{{ title }}</p>
+    <div class="flex justify-between items-center transform -translate-y-3">
+      <p class="text-base">{{ title }}</p>
       <button
         v-if="type == 'decide'"
-        class="flex items-center -translate-y-3 -translate-x-2"
+        class="flex items-center"
         @click="
           changeGoodIcon()
-          voteFunction(voteId,voteIndex)
+          voteFunction(voteId, voteIndex)
         "
       >
         <!-- isClickでクリックアニメーションを入れたかった…… -->
-        <img
-          class=" w-5 inline-block mr-4 transform -translate-y+3 opacity-70 hover:opacity-100"
-          :class="{ 'opacity-100': isClick }"
-          :src="goodIconSrc"
+        <div
+          class="flex flex-col items-center inline-block mr-2 opacity-70 hover:opacity-100"
         >
-        <p v-if="type == 'decide'" class="transform -translate-x-3">{{ voteNumber }}</p>
+          <img
+            class="w-0.5 opacity-0"
+            :class="{ 'opacity-100 animate-nice': isClick }"
+            src="~assets/images/niiiiice.png"
+          />
+          <img
+            class="w-4"
+            :class="{ 'opacity-100 animate-wiggle': isClick }"
+            :src="goodIconSrc"
+          />
+        </div>
+        <p v-if="type == 'decide'" class="text-xs w-2 mr-4 pt-0.5">
+          {{ voteNumber }}
+        </p>
       </button>
     </div>
   </li>

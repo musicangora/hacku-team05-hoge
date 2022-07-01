@@ -72,7 +72,9 @@
             </p>
           </div>
           <div v-else>
-            <p>投票可能回数が上限に達しました</p>
+            <p class="font-bold text-lg text-red-500 text-ol-white-2">
+              投票可能回数が上限に達しました
+            </p>
           </div>
           <p class="font-bold text-xs text-my-black text-ol-white-2">
             みんなで話し合いながら Niiiiice! なお題に投票しよう！
@@ -90,7 +92,7 @@ export default {
   components: { ListPanel },
   data() {
     return {
-      countDownTime: 30,
+      countDownTime: 300000,
       url: '',
       questions: [],
       voteCount: 0,
