@@ -61,7 +61,7 @@
                   type="text"
                   class="w-64 h-11 p-3 text-lg text-gray-500 focus:text-my-black bg-yellow-50 focus:bg-yellow-100 border-4 border-my-black rounded-xl"
                   :placeholder="placeholder"
-                >
+                />
               </div>
               <!--- ボタン -->
               <button
@@ -73,7 +73,9 @@
               </button>
             </div>
             <div v-if="isEntered && !host" class="flex items-center mb-4">
-              <p>ルームに参加しました！ホストがゲームを開始するまでしばらくお待ちください。</p>
+              <p>
+                ルームに参加しました！ホストがゲームを開始するまでしばらくお待ちください
+              </p>
             </div>
 
             <!--- テキスト入力フィールド -->
@@ -85,22 +87,27 @@
                   メンバー招待用リンク
                 </div>
                 <p
-                  class="w-64 h-15 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
+                  class="w-72 h-15 text-left pl-2 pt-1 overflow-x-scroll text-sm text-my-black bg-yellow-50 border-2 border-my-black rounded-lg"
                 >
-                  【アイスブレイクアプリ】 Niiiiice!<br>
-                  招待URL：{{ pageUrl }}
+                  {{ pageUrl }}
                 </p>
               </div>
               <div class="relative">
                 <!--- ボタン -->
                 <button
-                  class="w-36 h-8 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-2 border-my-black rounded-lg text-sm font-bold button-shadow active:button-shadow-none active:transform active:translate-y-0.5"
+                  class="w-28 h-8 pt-0.5 mt-4 bg-yellow-50 hover:opacity-80 border-2 border-my-black rounded-lg text-sm font-bold button-shadow active:button-shadow-none active:transform active:translate-y-0.5"
                   @click="copyLink"
                 >
                   招待
                 </button>
-                <div v-if="isSnackbarShowing" class="absolute top-16" role="alert">
-                  <p class="text-xs">リンクをコピーしたよ！</p>
+                <div
+                  v-if="isSnackbarShowing"
+                  class="absolute top-14 left-4"
+                  role="alert"
+                >
+                  <p class="text-xs text-my-black font-bold text-ol-white-2">
+                    リンクをコピー<br />しました！
+                  </p>
                 </div>
               </div>
             </div>
@@ -177,12 +184,11 @@ export default {
     }
   },
   methods: {
-    showSnackbar () {
+    showSnackbar() {
       this.isSnackbarShowing = true
       setTimeout(() => {
         this.isSnackbarShowing = false
-      }, 3000
-      )
+      }, 3000)
     },
     showMember() {
       const self = this
@@ -240,8 +246,13 @@ export default {
           const url = '/room/active/' + this.$store.state.roomId
           const response = await this.$axios.post(url, '')
           if (response.status === 200) {
-            this.$store.commit('setStartTime', Date.parse(response.data.timestamp))
-            this.$router.push('/' + this.$store.state.roomId + '/collectQuestions')
+            this.$store.commit(
+              'setStartTime',
+              Date.parse(response.data.timestamp)
+            )
+            this.$router.push(
+              '/' + this.$store.state.roomId + '/collectQuestions'
+            )
             clearInterval(this.memberInterval)
             this.gameStartFlag = true
           }
@@ -249,7 +260,8 @@ export default {
           console.log('何度も押さないでーーー')
         }
       } else {
-        this.canNotStart = 'ゲームを始めるには自分を含め少なくとも2名以上のニックネームの登録が必要です。'
+        this.canNotStart =
+          'ゲームを始めるには自分を含め少なくとも2名以上のニックネームの登録が必要です。'
       }
     },
     copyLink() {
