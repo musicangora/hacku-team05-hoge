@@ -6,7 +6,23 @@
     >
       <!--- ヘッダー -->
       <div class="h-28 m-4 flex justify-center items-center text-center">
-        <img class="w-28" src="~assets/images/hacku-05.png" />
+        <div class="relative w-28 h-28">
+          <img
+            class="absolute left-1/2 top-1.5 transform -translate-x-1/2 w-[5.8rem] animate-topbg"
+            src="~assets/images/top_logo_bg.png"
+          />
+
+          <img
+            class="absolute left-[18px] w-[4.3rem] animate-toplogo"
+            src="~assets/images/top_logo.png"
+          />
+
+          <img
+            class="absolute top-16 w-28 animate-toptext"
+            src="~assets/images/top_logo_text.png"
+          />
+          <!-- <img class="w-28" src="~assets/images/hacku-05.png" /> -->
+        </div>
       </div>
 
       <!-- <div>
