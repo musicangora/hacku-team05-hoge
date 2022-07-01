@@ -9,7 +9,7 @@
   <a href="https://jp.vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/40447362/176386757-5f86292e-d051-4ec5-8ced-fd9cda0ca10a.png" height="40" style="margin:20"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <a href="https://nuxtjs.org/" ><img src="https://user-images.githubusercontent.com/40447362/176388148-63497849-486e-411b-b5d5-a193dd94e2fd.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <a href="https://nodejs.org/ja/" ><img src="https://user-images.githubusercontent.com/40447362/176390231-9f157ad5-87e6-41fa-935b-e586a10b98c4.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
-    <a href="https://nodejs.org/ja/" ><img src="https://user-images.githubusercontent.com/40447362/176880622-8b1c819e-f5ee-4932-bbce-6b3a9b682f67.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href="https://tailwindcss.com/" ><img src="https://user-images.githubusercontent.com/40447362/176880622-8b1c819e-f5ee-4932-bbce-6b3a9b682f67.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
     <br />
     <br />
   <a href="https://firebase.google.com/?hl=ja" ><img src="https://user-images.githubusercontent.com/40447362/176389675-1ebf53e8-782c-400a-bc44-6d52e90ab3a7.png" height="40"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -20,27 +20,42 @@
 https://hacku-team05-hoge.web.app/
 
 ### 🎮 How to play
+1. アクセスしてルームを作成！
+2. 一緒に遊ぶメンバーを招待しよう
+3. メンバーが集まったら、みんなのことが知れそうなお題を出し合おう！
+4. お題に対する回答をみんなで出し合おう！
+5. 「確かに！」 「その回答があったか！」 みんなでワイワイ雑談！
+6. 共感を集めて投票で1つの回答を決めよう！
 
 ### 📛 Title
 <img src="https://user-images.githubusercontent.com/40447362/176679601-f6609b98-3a03-4ae5-82a6-dcdd8dcff8af.png" />
 
 「共感」のコンセプトから「Nice!」を、開発メンバーの5人を「i」に見立てて「i」を5つ連続させて名付けました！
 
+### ✨ Features
+1. **いつでも気軽にサインアップ不要**でアイスブレイクのための部屋を作れる！
+2. 「子供のころ流行ったアニメは？」などのお題で**みんなのワイワイした会話を誘導**できる！
+3. **共通認識をもつ**＆**アイスブレイク**を同時に行える！
+
+
 ### 🤖 System
+#### システム構成図
+<img width="480" alt="image" src="https://user-images.githubusercontent.com/40447362/176894782-e674ad57-7fdb-415a-b6ce-f6e370787512.png">
+
+#### インフラ構成図
+<img width="480" alt="image" src="https://user-images.githubusercontent.com/40447362/176894950-7f3933c8-19fb-432e-9938-1399f796b83c.png">
 
 ### 🎨 Design
 #### いいね👍 から着想を得たポップなデザイン
 ##### Figmaを使ったプロトタイプのデザイン
-<img src="https://user-images.githubusercontent.com/40447362/176675827-08ff34da-84d4-4fbb-a295-78b929c57a6a.png" width=720 />
+<img src="https://user-images.githubusercontent.com/40447362/176675827-08ff34da-84d4-4fbb-a295-78b929c57a6a.png" width=480 />
 
 
 ##### 絵文字をベースにしたNiiiiice!なロゴ
-<img src="https://user-images.githubusercontent.com/40447362/176678262-0052a447-dc16-4b4b-b802-87122e10c4f9.png" width=480 />
+<img src="https://user-images.githubusercontent.com/40447362/176678262-0052a447-dc16-4b4b-b802-87122e10c4f9.png" width=350 />
 
 ##### CSSで作ったNiiiiice!なアニメーション
 <img src="https://user-images.githubusercontent.com/40447362/176880957-1c559547-69f2-4492-bc93-c95fedc5cf08.gif" width=350 />
-
-### ✨ Features
 
 ### 🙌 Contributers
 
