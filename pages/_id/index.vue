@@ -236,6 +236,10 @@ export default {
             'setStartTime',
             Date.parse(response.data.timestamp)
           )
+          this.$store.commit(
+            'setRoomId',
+            window.location.href.split('/').slice(-1)[0]
+          )
           this.$router.push(
             '/' + this.$store.state.roomId + '/collectQuestions'
           )
@@ -253,6 +257,10 @@ export default {
             this.$store.commit(
               'setStartTime',
               Date.parse(response.data.timestamp)
+            )
+            this.$store.commit(
+              'setRoomId',
+              window.location.href.split('/').slice(-1)[0]
             )
             this.$router.push(
               '/' + this.$store.state.roomId + '/collectQuestions'
