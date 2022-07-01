@@ -57,9 +57,10 @@
             :type="'decide'"
             :user-name="question.createdUserName"
             :title="question.title"
-            :vote-function="voteQuestion"
             :vote-id="question.id"
             :vote-number="question.numberOfVotes"
+            :vote-index="key"
+            @updateCount="updateCount"
           />
           <li v-if="questions.length == 0">お題を生成中…</li>
         </ul>
@@ -71,7 +72,9 @@
             </p>
           </div>
           <div v-else>
-            <p>投票可能回数が上限に達しました</p>
+            <p class="font-bold text-lg text-red-500 text-ol-white-2">
+              投票可能回数が上限に達しました
+            </p>
           </div>
           <p class="font-bold text-xs text-my-black text-ol-white-2">
             みんなで話し合いながら Niiiiice! なお題に投票しよう！
@@ -103,7 +106,7 @@ export default {
   },
   mounted() {
     this.showQuestions()
-    this.setQuestionInterval()
+    // this.setQuestionInterval()
   },
   methods: {
     async showQuestions() {
@@ -126,20 +129,16 @@ export default {
         self.showQuestions()
       }, 5000)
     },
-    async voteQuestion (questionId, index) {
+    async updateCount(id, index) {
       if (this.maxVoteCount > this.voteCount) {
-        // this.questions[index].numberOfVotes += 1
-        const url = '/theme/vote/' + questionId
+        this.questions[index].numberOfVotes += 1
+        const url = '/theme/vote/' + id
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
           this.voteCount += 1
         }
       }
     }
-    // changeGoodIcon() {
-    //   this.isClick = true
-    //   this.goodIconSrc = require('~/assets/images/good-fill.png')
-    // }
   }
 }
 </script>

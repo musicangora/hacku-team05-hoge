@@ -7,22 +7,34 @@
     >
       {{ userName }}
     </p>
-    <div class="flex justify-between">
-      <p class="text-base transform -translate-y-3">{{ title }}</p>
-      <span v-if="type == 'decide'">{{ voteNumber }}</span>
+    <div class="flex justify-between items-center transform -translate-y-3">
+      <p class="text-base">{{ title }}</p>
       <button
         v-if="type == 'decide'"
+        class="flex items-center"
         @click="
           changeGoodIcon()
-          voteFunction(voteId)
+          voteFunction(voteId, voteIndex)
         "
       >
         <!-- isClickでクリックアニメーションを入れたかった…… -->
-        <img
-          class="w-5 inline-block mr-4 transform -translate-y-3 opacity-70 hover:opacity-100"
-          :class="{ 'opacity-100': isClick }"
-          :src="goodIconSrc"
-        />
+        <div
+          class="flex flex-col items-center inline-block mr-2 opacity-70 hover:opacity-100"
+        >
+          <img
+            class="w-0.5 opacity-0"
+            :class="{ 'opacity-100 animate-nice': isClick }"
+            src="~assets/images/niiiiice.png"
+          />
+          <img
+            class="w-4"
+            :class="{ 'opacity-100 animate-wiggle': isClick }"
+            :src="goodIconSrc"
+          />
+        </div>
+        <p v-if="type == 'decide'" class="text-xs w-2 mr-4 pt-0.5">
+          {{ voteNumber }}
+        </p>
       </button>
     </div>
   </li>
@@ -40,12 +52,7 @@ export default {
     title: {
       type: String,
       required: false,
-      default: 'いい感じのお題'
-    },
-    voteFunction: {
-      type: Function,
-      required: false,
-      default: () => {}
+      default: '回答間に合わず(T_T)'
     },
     voteId: {
       type: String,
@@ -61,6 +68,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    voteIndex: {
+      type: Number,
+      required: false,
+      default: 0
     }
   },
   data() {
@@ -73,6 +85,9 @@ export default {
     changeGoodIcon() {
       this.isClick = true
       this.goodIconSrc = require('~/assets/images/good-fill.png')
+    },
+    voteFunction(id, index) {
+      this.$emit('updateCount', id, index)
     }
   }
 }

@@ -9,7 +9,32 @@ module.exports = {
         'my-yellow': '#FFDC76',
         'my-mid-yellow': '#FEF4D6'
       },
-      animation: {}
+      keyframes: {
+        wiggle: {
+          '0%': { transform: 'rotate(0deg)' },
+          '10%': { transform: 'rotate(10deg) scale(0.5)' },
+          '40%': { transform: 'rotate(-30deg) scale(1.3)' },
+          '60%': { transform: 'rotate(-30deg) scale(1.3)' },
+          '90%': { transform: 'rotate(10deg) scale(1)' },
+          '100%': { transform: 'rotate(0deg) scale(1)' }
+        },
+        nice: {
+          '0%': { opacity: '100' },
+          '40%': { transform: 'translateY(-1000%) scaleX(25) scaleY(20)' },
+          '75%': { opacity: '100' },
+          '85%': {
+            transform: 'translateY(-1000%) scaleX(25) scaleY(20)'
+          },
+          '100%': {
+            transform: 'translateY(0) scale(1)',
+            opacity: '0'
+          }
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 0.5s ease-in-out',
+        nice: 'nice 0.5s ease-in-out'
+      }
     }
   },
   variants: {

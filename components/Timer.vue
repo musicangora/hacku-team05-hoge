@@ -55,7 +55,7 @@ export default {
   },
   async mounted() {
     clearInterval(this.timer)
-    const offset = await this.$store.dispatch('fetchTimerOffset')
+    const offset = await this.$store.dispatch('fetchTimerOffset', { url: this.url })
     this.sec = this.time
     this.nextpage = this.url
     this.sec = this.sec - offset

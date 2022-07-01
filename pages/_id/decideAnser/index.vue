@@ -17,7 +17,7 @@
         <!--- お題パネル -->
         <div class="w-3/4">
           <p class="font-bold text-left text-sm text-ol-white-2 mb-1 pl-4">
-            みんなの考えたお題
+            みんなの回答
           </p>
         </div>
         <ul
@@ -52,8 +52,10 @@
             :type="'decide'"
             :user-name="anser.createdUserName"
             :title="anser.title"
-            :vote-function="voteAnser"
             :vote-id="anser.id"
+            :vote-number="anser.numberOfVotes"
+            :vote-index="key"
+            @updateCount="updateCount"
           />
         </ul>
 
@@ -119,16 +121,26 @@ export default {
         }
       }
     },
-    async voteAnser (anserId, index) {
+    async updateCount(id, index) {
       if (this.maxVoteCount > this.voteCount) {
         this.ansers[index].numberOfVotes += 1
-        const url = '/answer/vote/' + anserId
+        const url = '/answer/vote/' + id
         const response = await this.$axios.post(url, '')
         if (response.status === 200) {
           this.voteCount += 1
         }
       }
     }
+    // async voteAnser (anserId, index) {
+    //   if (this.maxVoteCount > this.voteCount) {
+    //     this.ansers[index].numberOfVotes += 1
+    //     const url = '/answer/vote/' + anserId
+    //     const response = await this.$axios.post(url, '')
+    //     if (response.status === 200) {
+    //       this.voteCount += 1
+    //     }
+    //   }
+    // }
     // changeGoodIcon() {
     //   alert('change')
     //   this.goodIconSrc = '/_nuxt/assets/images/good-fill.png'

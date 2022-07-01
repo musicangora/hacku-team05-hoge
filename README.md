@@ -9,7 +9,10 @@
   <a href="https://jp.vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/40447362/176386757-5f86292e-d051-4ec5-8ced-fd9cda0ca10a.png" height="40" style="margin:20"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <a href="https://nuxtjs.org/" ><img src="https://user-images.githubusercontent.com/40447362/176388148-63497849-486e-411b-b5d5-a193dd94e2fd.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <a href="https://nodejs.org/ja/" ><img src="https://user-images.githubusercontent.com/40447362/176390231-9f157ad5-87e6-41fa-935b-e586a10b98c4.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
-  <a href="https://firebase.google.com/?hl=ja" ><img src="https://user-images.githubusercontent.com/40447362/176389675-1ebf53e8-782c-400a-bc44-6d52e90ab3a7.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href="https://nodejs.org/ja/" ><img src="https://user-images.githubusercontent.com/40447362/176880622-8b1c819e-f5ee-4932-bbce-6b3a9b682f67.png" height="48"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <br />
+    <br />
+  <a href="https://firebase.google.com/?hl=ja" ><img src="https://user-images.githubusercontent.com/40447362/176389675-1ebf53e8-782c-400a-bc44-6d52e90ab3a7.png" height="40"/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <a href="https://aws.amazon.com/jp/" ><img src="https://user-images.githubusercontent.com/40447362/176393047-680a6a65-eb8f-4df2-b114-79b2bc752b05.png" height="40"/></a>
 </div>
 
@@ -23,7 +26,7 @@ https://hacku-team05-hoge.web.app/
 
 「共感」のコンセプトから「Nice!」を、開発メンバーの5人を「i」に見立てて「i」を5つ連続させて名付けました！
 
-
+### 🤖 System
 
 ### 🎨 Design
 #### いいね👍 から着想を得たポップなデザイン
@@ -34,6 +37,8 @@ https://hacku-team05-hoge.web.app/
 ##### 絵文字をベースにしたNiiiiice!なロゴ
 <img src="https://user-images.githubusercontent.com/40447362/176678262-0052a447-dc16-4b4b-b802-87122e10c4f9.png" width=480 />
 
+##### CSSで作ったNiiiiice!なアニメーション
+<img src="https://user-images.githubusercontent.com/40447362/176880957-1c559547-69f2-4492-bc93-c95fedc5cf08.gif" width=350 />
 
 ### ✨ Features
 
