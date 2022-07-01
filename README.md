@@ -48,11 +48,11 @@ https://hacku-team05-hoge.web.app/
 ### 🎨 Design
 #### いいね👍 から着想を得たポップなデザイン
 ##### Figmaを使ったプロトタイプのデザイン
-<img src="https://user-images.githubusercontent.com/40447362/176675827-08ff34da-84d4-4fbb-a295-78b929c57a6a.png" width=720 />
+<img src="https://user-images.githubusercontent.com/40447362/176675827-08ff34da-84d4-4fbb-a295-78b929c57a6a.png" width=480 />
 
 
 ##### 絵文字をベースにしたNiiiiice!なロゴ
-<img src="https://user-images.githubusercontent.com/40447362/176678262-0052a447-dc16-4b4b-b802-87122e10c4f9.png" width=480 />
+<img src="https://user-images.githubusercontent.com/40447362/176678262-0052a447-dc16-4b4b-b802-87122e10c4f9.png" width=350 />
 
 ##### CSSで作ったNiiiiice!なアニメーション
 <img src="https://user-images.githubusercontent.com/40447362/176880957-1c559547-69f2-4492-bc93-c95fedc5cf08.gif" width=350 />
