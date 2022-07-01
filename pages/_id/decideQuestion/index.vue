@@ -92,7 +92,7 @@ export default {
   components: { ListPanel },
   data() {
     return {
-      countDownTime: 300000,
+      countDownTime: 30,
       url: '',
       questions: [],
       voteCount: 0,
