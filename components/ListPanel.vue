@@ -18,11 +18,20 @@
         "
       >
         <!-- isClickでクリックアニメーションを入れたかった…… -->
-        <img
-          class="w-4 inline-block mr-2 opacity-70 hover:opacity-100"
-          :class="{ 'opacity-100': isClick }"
-          :src="goodIconSrc"
-        />
+        <div
+          class="flex flex-col items-center inline-block mr-2 opacity-70 hover:opacity-100"
+        >
+          <img
+            class="w-0.5 opacity-0"
+            :class="{ 'opacity-100 animate-nice': isClick }"
+            src="~assets/images/niiiiice.png"
+          />
+          <img
+            class="w-4"
+            :class="{ 'opacity-100 animate-wiggle': isClick }"
+            :src="goodIconSrc"
+          />
+        </div>
         <p v-if="type == 'decide'" class="text-xs w-2 mr-4 pt-0.5">
           {{ voteNumber }}
         </p>
